@@ -1,0 +1,28 @@
+body {
+    background-color: #333;
+}
+
+#gameframe {
+    height: 400px;
+    margin-top: 2em;
+    width: 100%;
+    cursor: none;
+}
+
+#hud {
+    padding: 5px;
+    font-size: 18px;
+}
+
+#instructions {
+    color: #ddd;
+}
+
+#playground {
+    background-color: #333;
+}
+
+#welcomeScreen {
+    position: absolute;
+    margin: 0 auto;
+}
