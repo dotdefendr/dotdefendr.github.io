@@ -7,7 +7,9 @@
     <script type="text/javascript" src="static/js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/gamequery-0.7.1.js"></script>
-    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="gamescripts/variables.js"></script>
+    <script type="text/javascript" src="gamescripts/objects.js"></script>
+    <script type="text/javascript" src="gamescripts/game.js"></script>
     <link rel="stylesheet" href="static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="static/css/main.css" />
 </head>
