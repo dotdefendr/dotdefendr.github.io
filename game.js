@@ -23,7 +23,7 @@
 const PLAYGROUND_HEIGHT = 400;
 const PLAYGROUND_WIDTH = 1000;
 const REFRESH_RATE = 25;
-const PAUSE_AFTER_DEATH = 3000;
+const PAUSE_AFTER_DEATH = 5000;
 const RESPAWN_TIME = -1;
 
 // Initialize player constants
@@ -36,7 +36,7 @@ const PLAYER_HEIGHT = 20;
 var PLAYER_POSITION = [];
 
 // Stuff involving the crosshair
-const MAX_CROSSHAIR_DISTANCE = 50;
+const MAX_CROSSHAIR_DISTANCE = 75;
 const CROSSHAIR_WIDTH = 7;
 const CROSSHAIR_HEIGHT = 7;
 var MOUSE_POSITION = [];
@@ -78,7 +78,7 @@ function killPlayer(playerNode){
     playerNode.children().hide();
 
     // Add a "dead" animation
-    playerNode.addSprite("dead", {animation: playerAnimation["die"], width: 20, height: 20 });
+    playerNode.addSprite("dead", {animation: playerAnimation["dead"], width: 20, height: 20 });
     playerHit = true;
 };
 
@@ -124,8 +124,11 @@ function updateCrosshair(e){
     }
 
     // Adjust the crosshair
-    $("#crosshair").x(newX - CROSSHAIR_WIDTH/2);
-    $("#crosshair").y(newY - CROSSHAIR_HEIGHT/2);
+    try{
+        $("#crosshair").x(newX - CROSSHAIR_WIDTH/2);
+        $("#crosshair").y(newY - CROSSHAIR_HEIGHT/2);
+    } catch(TypeError){
+    }
 }
 
 function getRadians(point1, point2){
@@ -354,8 +357,12 @@ $(function(){
     // MAJOR GAME LOGIC HAPPENS HERE
     $.playground().registerCallback(function(){
         if(!gameOver){
+            var accuracy = Math.round((killcount/bulletCount)*100);
+            if(!accuracy){
+                accuracy = 0;
+            }
             $("#health").html("Health: "+$("#player")[0].player.health);
-            $("#stats").html("<div class='text-center'>Kills: "+killcount+" Shots Fired: "+bulletCount+" Accuracy: "+Math.round((killcount/bulletCount)*100)+"%</div>");
+            $("#stats").html("<div class='text-center'>Kills: "+killcount+" Shots Fired: "+bulletCount+" Accuracy: "+accuracy+"%</div>");
             $("#lives").html("<div class='pull-right'>Lives: "+$("#player")[0].player.replay+"</div>");
             // Update the health
             updateCrosshair(jQuery.event);
@@ -403,10 +410,12 @@ $(function(){
             } else {
                 if($("#player")[0].player.respawn()){
                     gameOver = true;
-                    $("#playground").append("<div class='text-center'><h2>GAME OVER</h2></div>");
-                    $("#restartbutton").click(restartgame);
-                    $("#actors,#playerBulletLayer").fadeTo(1000,0);
-                    $("#background").fadeTo(5000, 0);
+                    $("#playground").append("<div class='text-center'><h2>GAME OVER</h2></div><div class='text-center'><a href='#' id='restartbutton'>Try Again?</a></div>");
+                    $("#restartbutton").click(function(){
+                        restartGame();
+                    });
+                    $("#actors,#playerBulletLayer,#overlay").fadeTo(1000,0);
+                    $("#background").fadeTo(3000, 0);
                 } else {
                     playerHit = false;
                 }
@@ -467,7 +476,7 @@ $(function(){
     // Handle enemy creation
     $.playground().registerCallback(function(){
         var num_enemies = NUM_ENEMIES;
-        if(!gameOver && !bossWave && num_enemies < MAX_ENEMIES){
+        if(!gameOver && num_enemies < MAX_ENEMIES){
             leftSpawn();
             num_enemies++;
         }
@@ -494,8 +503,8 @@ $(function(){
     });
 
     $(document).mousemove(function(e){
-        e.preventDefault();
         if(!gameOver){
+            e.preventDefault();
             updateCrosshair(e);
         }
     });

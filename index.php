@@ -1,5 +1,5 @@
 <?php
-    $title = "DOT DEFENDER!";
+    $title = "DOT DEFENDR!";
     include('libs/header.php');
     include('libs/navbar.php');
 ?>
