@@ -10,7 +10,7 @@ const PLAYGROUND_WIDTH = 1000;
 const REFRESH_RATE = 25;
 const PAUSE_AFTER_DEATH = 5000;
 const RESPAWN_TIME = -1;
-const BULLET_SPEED = 30; // pixels per frame
+const BULLET_SPEED = 40; // pixels per frame
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
