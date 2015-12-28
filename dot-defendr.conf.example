@@ -3,11 +3,11 @@
     # so wildcard DNS for any IP works (see xip.io or nip.io)
     ServerAlias 0.0.0.0.*
 
-    DocumentRoot /vol/www/dot-defendr
+    DocumentRoot /path/to/dot-defendr
     ErrorLog /var/log/httpd/dot-defendr.local.error_log
     CustomLog /var/log/httpd/dot-defendr.local.access_log vhost
 
-    <Directory /vol/www/dot-defendr>
+    <Directory /path/to/dot-defendr>
         AllowOverride All
     </Directory>
 </VirtualHost>
