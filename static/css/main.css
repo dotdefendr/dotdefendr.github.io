@@ -24,6 +24,13 @@ body {
     color: #ddd;
 }
 
+#loadingBar {
+    position: relative;
+    width: 0px;
+    height: 15px;
+    background-color: red;
+}
+
 #playground {
     background-color: #333;
 }
