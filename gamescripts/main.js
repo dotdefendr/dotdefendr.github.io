@@ -4,12 +4,9 @@
  *  You are a dot.
  *  defend yourself.
  *
- *  controls are WASD
- *  aim and shoot using the mouse.
- *
- *
- *
- *  it will be a pretty cool game.
+ *  This is the main game file.
+ *  Game initialization and logic
+ *  management is defined here.
  *
  */
 
@@ -58,10 +55,27 @@ $(function(){
     //--------------------------------- Place everything within the playground -------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
 
-    // Initialize the 'playground' element with a default width and height,
-    // and all the elements it contains.
+    // Initialize the 'playground' element with a default width and height.
+    // Make sure it is able to keep track of which keys get pressed.
     $("#playground").playground({height: PLAYGROUND_HEIGHT, width: PLAYGROUND_WIDTH, keyTracker: true});
 
+    //  Add all the layers to the playground.
+    //  Here's how they work.
+    //
+    //      background              - group (holds all the sprites)
+    //          background<N>       - sprite (the background image)
+    //      playerBulletLayer       - group
+    //          bullet<N>           - sprite (each individual bullet shot by the player)
+    //      actors                  - group (the player and enemies)
+    //          player              - group (the player and their corresponding sprites)
+    //              playerBody      - sprite (the actual player image)
+    //          enemy               - group (the enemies and their corresponding sprites)
+    //              enemyBody       - sprite (the actual enemy image)
+    //      overlay                 - group (all HUD and Crosshair stuff)
+    //          crosshair           - group (the crosshair and its corresponding sprites)
+    //              crosshairSprite - sprite (the crosshair sprite)
+    //
+    //
     $.playground().addGroup("background", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
         .addSprite("background1", {animation: background1, width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
         .addSprite("background2", {animation: background2, width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT, posx: PLAYGROUND_WIDTH})
@@ -72,11 +86,19 @@ $(function(){
             .addSprite("playerBody", {animation: playerAnimation["idle"], posx: 0, posy: 0, width: PLAYER_WIDTH, height: PLAYER_HEIGHT})
         .end()
     .end()
-    .addGroup("enemiesBulletLayer", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT}).end()
     .addGroup("overlay", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
         .addGroup("crosshair", {posx: PLAYGROUND_WIDTH/2, posy: PLAYGROUND_HEIGHT/2, width: CROSSHAIR_WIDTH, height: CROSSHAIR_HEIGHT})
             .addSprite("crosshairSprite", {animation: crosshair["aim"], posx: 0, posy: 0, width: CROSSHAIR_WIDTH, height: CROSSHAIR_HEIGHT});
 
+
+    // Initialize the player.
+    //      The player <div> is turned into an array
+    //      that holds the 'player' javascript object.
+    //      The player object is initialized using the
+    //      player <div>.
+    //
+    //      Honestly it seems kinda circular to me but
+    //      as long as it works I guess.
     $("#player")[0].player = new Player($("#player"));
 
     //--------------------------------------------------------------------------------------------------------------------//
@@ -86,6 +108,7 @@ $(function(){
     var width = $(document).width();
     var padding = (width - $('#playground').width())/2;
     $('#playground').css('margin', '0 ' + padding + 'px');
+
 
     // Center the start button
     var pushX = ($('#playground').width()/2) - ($('#startbutton').width()/2);
@@ -106,12 +129,16 @@ $(function(){
         }
     });
 
+
     // Set the ID of the loading bar.
     $.loadCallback(function(percent){
         $("#loadingBar").width(400 * percent);
     });
 
-    // Initialize the start button
+
+    // Define the onclick behavior of the start button div.
+    //      Welcome screen fades out.
+    //      game has begun so gameOver = false
     $("#startbutton").click(function(){
         $.playground().startGame(function(){
             $("#welcomeScreen").fadeTo(500,0,function(){$(this).remove();});
@@ -119,59 +146,37 @@ $(function(){
         });
     });
 
-
     //--------------------------------------------------------------------------------------------------------------------//
     //------------------------------------------------ LOGIC! ------------------------------------------------------------//
 
-    // MAJOR GAME LOGIC HAPPENS HERE
+    // This callback function handles most of the major
+    // game logic management.
+    // Update logic is handled here.
     $.playground().registerCallback(function(){
         if(!gameOver){
-            updateUI();
-            updateCrosshair(jQuery.event);
 
+            // First update the players movement.
+            // Player should get first priority.
             updatePlayerMovement();
 
+            // Next update the players bullets.
+            updateBulletMovement();
             updateEnemyMovement();
 
-            // Update bullet movement
-            $(".playerBullet").each(function(){
-                var posx = $(this).x();
-                var posy = $(this).y();
-                if(posx > PLAYGROUND_WIDTH || posy > PLAYGROUND_HEIGHT){
-                    $(this).remove();
-                    return;
-                }
-                var nextX = Math.round(Math.cos($(this)[0].bullet.direction) * BULLET_SPEED + posx);
-                var nextY = Math.round(Math.sin($(this)[0].bullet.direction) * BULLET_SPEED + posy);
-
-                $(this).x(nextX);
-                $(this).y(nextY);
-
-                var collided = $(this).collision(".enemy,."+$.gQ.groupCssClass);
-                var temp = $(this);
-                if(collided.length > 0){
-                    collided.each(function(){
-                        if($(this)[0].enemy.damage()){
-                            killcount++;
-                            NUM_ENEMIES--;
-                            $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
-                            $(this).removeClass("enemy");
-                            temp.removeClass("playerBullet");
-                            temp.remove();
-                            $(this).fadeTo(3000,0).done(function(){
-                                $(this).remove();
-                            });
-                        }
-                    });
-                    $(this).removeClass("playerBullet");
-                    $(this).remove();
-                }
-            });
-
+            // The least important parts are
+            // the crosshair and the user interface.
+            // Those can wait until everything else is done.
+            updateCrosshair(jQuery.event);
+            updateUI();
         }
     }, REFRESH_RATE);
 
-    // Handle enemy creation
+
+    // This callback function handles creation of enemies.
+    // It simply checks the that it's still ok to spawn more enemies
+    // (AKA the number of enemies currently is less than the max
+    // number of enemies allowed) before calling the spawn function
+    // (decided at the beginning of the game by the player).
     $.playground().registerCallback(function(){
         var num_enemies = NUM_ENEMIES;
         if(!gameOver && num_enemies < MAX_ENEMIES){
