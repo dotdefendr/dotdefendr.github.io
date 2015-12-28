@@ -11,6 +11,7 @@ const REFRESH_RATE = 25;
 const PAUSE_AFTER_DEATH = 5000;
 const RESPAWN_TIME = -1;
 const BULLET_SPEED = 40; // pixels per frame
+const FIRE_RATE = 250; // Wait 250 ms between firing each bullet
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
@@ -49,4 +50,5 @@ var gameOver = true;
 var grenades = 0;
 var bulletCount = 0;
 var killcount = 0;
-
+var mouseDown = false;
+var timeout;
