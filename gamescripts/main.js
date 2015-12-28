@@ -21,6 +21,9 @@
 function loadScripts(){
     $.getScript("gamescripts/keybindings.js");
     $.getScript("gamescripts/helpers.js");
+    $.getScript("gamescripts/player.js");
+    $.getScript("gamescripts/enemy.js");
+    $.getScript("gamescripts/bullets.js");
 }
 loadScripts();
 
@@ -70,7 +73,7 @@ $(function(){
     //          player              - group (the player and their corresponding sprites)
     //              playerBody      - sprite (the actual player image)
     //          enemy               - group (the enemies and their corresponding sprites)
-    //              enemyBody       - sprite (the actual enemy image)
+    //              enemy           - sprite (the actual enemy image)
     //      overlay                 - group (all HUD and Crosshair stuff)
     //          crosshair           - group (the crosshair and its corresponding sprites)
     //              crosshairSprite - sprite (the crosshair sprite)

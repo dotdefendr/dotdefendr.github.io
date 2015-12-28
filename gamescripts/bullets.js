@@ -1,37 +1,36 @@
+// This function updates the bullet movement.
+//      For each bullet on the screen it does the following
+//          Get the bullet position,
+//          Make sure it's not outside the boundaries.
+//          If it is, remove it.
+//          Otherwise, do some trig to figure out where the next
+//          position for the bullet is and move the bullet.
+//
 function updateBulletMovement(){
-    // Update bullet movement
     $(".playerBullet").each(function(){
+        // Get current position
         var posx = $(this).x();
         var posy = $(this).y();
+
+        // Check if out of bounds
         if(posx > PLAYGROUND_WIDTH || posy > PLAYGROUND_HEIGHT){
             $(this).remove();
             return;
         }
+        // Check if there was a collision
+        var collided = $(this).collision(".enemy,."+$.gQ.groupCssClass);
+        var collider = $(this);
+
+        handleEnemyDamage(collided, collider, "playerBullet");
+
+        // Figure out the next position
         var nextX = Math.round(Math.cos($(this)[0].bullet.direction) * BULLET_SPEED + posx);
         var nextY = Math.round(Math.sin($(this)[0].bullet.direction) * BULLET_SPEED + posy);
 
+        // Move the bullet
         $(this).x(nextX);
         $(this).y(nextY);
 
-        var collided = $(this).collision(".enemy,."+$.gQ.groupCssClass);
-        var temp = $(this);
-        if(collided.length > 0){
-            collided.each(function(){
-                if($(this)[0].enemy.damage()){
-                    killcount++;
-                    NUM_ENEMIES--;
-                    $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
-                    $(this).removeClass("enemy");
-                    temp.removeClass("playerBullet");
-                    temp.remove();
-                    $(this).fadeTo(3000,0).done(function(){
-                        $(this).remove();
-                    });
-                }
-            });
-            $(this).removeClass("playerBullet");
-            $(this).remove();
-        }
     });
 
 }
