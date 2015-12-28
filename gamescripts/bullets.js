@@ -21,7 +21,7 @@ function updateBulletMovement(){
         var collided = $(this).collision(".enemy,."+$.gQ.groupCssClass);
         var collider = $(this);
 
-        handleEnemyDamage(collided, collider, "playerBullet");
+        handleEnemyDamage(collided, "enemy", collider, "playerBullet");
 
         // Figure out the next position
         var nextX = Math.round(Math.cos($(this)[0].bullet.direction) * BULLET_SPEED + posx);

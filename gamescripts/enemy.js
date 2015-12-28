@@ -11,7 +11,7 @@ function updateEnemyMovement(){
         // Check if there was a collision with a bullet
         var collided_with_bullet = $(this).collision(".playerBullet,."+$.gQ.groupCssClass);
         var collider = $(this);
-        handleEnemyDamage(collided_with_bullet, collider, "enemy");
+        handleEnemyDamage(collided_with_bullet, "playerBullet", collider, "enemy");
 
         // Check if there was a collision with the player
         var collided_with_player = $(this).collision("#playerBody,."+$.gQ.groupCssClass);
@@ -28,14 +28,14 @@ function updateEnemyMovement(){
     });
 }
 
-function handleEnemyDamage(collided, collider, collider_class){
+function handleEnemyDamage(collided, collided_class, collider, collider_class){
     if(collided.length > 0){
         collided.each(function(){
             if($(this)[0].enemy.damage()){
                 killcount++;
                 NUM_ENEMIES--;
                 $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
-                $(this).removeClass("enemy");
+                $(this).removeClass(collided_class);
                 collider.removeClass(collider_class);
                 collider.remove();
                 $(this).fadeTo(3000,0).done(function(){
