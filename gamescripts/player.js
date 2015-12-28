@@ -21,9 +21,13 @@ function updateCrosshair(e){
     // the playground <div>. If the mouse position
     // wasn't given in this event, load it from
     // a previous value.
-    if(!e.pageX && !e.pageY){
+    if(!e){
         mousePosition = MOUSE_POSITION;
-    } else {
+    }
+    else if(!e.pageX && !e.pageY){
+        mousePosition = MOUSE_POSITION;
+    }
+    else {
         mousePosition = [
             e.pageX - offset.left,
             e.pageY - offset.top
@@ -70,9 +74,9 @@ function getDistance(point1, point2){
     return Math.floor(Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2)));
 }
 
+
 function fire(e){
-    e.preventDefault();
-    if(!gameOver){
+    if(!gameOver && mouseDown){
         updateCrosshair(e);
         var playerposx = $("#player").x();
         var playerposy = $("#player").y();
