@@ -135,7 +135,7 @@ $(function(){
 
     // Set the ID of the loading bar.
     $.loadCallback(function(percent){
-        $("#loadingBar").width(400 * percent);
+        $("#loadingBar").width(400 * percent + "px");
     });
 
 
