@@ -7,6 +7,7 @@ function killPlayer(playerNode){
     // Add a "dead" animation
     playerNode.addSprite("dead", {animation: playerAnimation["dead"], width: 20, height: 20 });
     playerHit = true;
+    invincible = true;
 };
 
 function updateCrosshair(e){
@@ -148,6 +149,12 @@ function updatePlayerMovement(){
             $("#background").fadeTo(3000, 0);
         } else {
             playerHit = false;
+            invincible = false;
+            $("#player").addSprite("idle", {animation: playerAnimation["idle"], width: 20, height: 20 });
+            $("#player").children().show();
+            $("#player").x(PLAYGROUND_WIDTH/2);
+            $("#player").y(PLAYGROUND_HEIGHT/2);
         }
+
     }
 }

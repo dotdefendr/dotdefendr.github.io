@@ -157,7 +157,6 @@ $(function(){
     // Update logic is handled here.
     $.playground().registerCallback(function(){
         if(!gameOver){
-
             // First update the players movement.
             // Player should get first priority.
             updatePlayerMovement();

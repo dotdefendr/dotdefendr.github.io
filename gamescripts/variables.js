@@ -12,7 +12,8 @@ const PAUSE_AFTER_DEATH = 5000;
 const RESPAWN_TIME = -1;
 const BULLET_SPEED = 40; // pixels per frame
 const FIRE_RATE = 250; // Wait 250 ms between firing each bullet
-const DAMAGE_RATE = 1000; // 1 damage per second
+const DAMAGE_RATE = 10; // 1 damage per second
+const INVINCIBLE = 2000;
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
@@ -44,7 +45,6 @@ var bullet = new Array();
 var enemies = new Array(1); // only 1 kind of enemy in the game for now
 
 // Game State
-var invincible = false;
 var bossWave = false;
 var playerHit = false;
 var timeOfRespawn = 0;
@@ -53,4 +53,5 @@ var grenades = 0;
 var bulletCount = 0;
 var killcount = 0;
 var mouseDown = false;
-var timeout;
+var fire_rate_timeout;
+var damage_rate_timeout;

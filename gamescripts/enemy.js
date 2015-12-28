@@ -13,7 +13,7 @@ function updateEnemyMovement(){
         var collider = $(this);
         handleEnemyDamage(collided_with_bullet, "playerBullet", collider, "enemy");
 
-        handlePlayerDamage(this);
+        handlePlayerDamage($(this));
 
         // Update the movement
         this.enemy.update($("#player"));
@@ -23,15 +23,17 @@ function updateEnemyMovement(){
 function handlePlayerDamage(enemy){
     // Check if there was a collision with the player
     var collided_with_player = $(enemy).collision("#playerBody,."+$.gQ.groupCssClass);
-    if(collided_with_player.length > 0 && !invincible){
-        if($("#player")[0].player.damage()){
-            killPlayer($("#player"));
-            $("#crosshair").remove();
-            killcount = 0;
-        }
-
+    if((collided_with_player.length > 0) && (player_damage_timeout > DAMAGE_RATE)){
+        collided_with_player.each(function(){
+            if($("#player")[0].player.damage()){
+                killPlayer($("#player"));
+                killcount = 0;
+            }
+            clearTimeout(player_damage_timeout);
+        });
     }
-    setTimeout('handlePlayerDamage', DAMAGE_RATE);
+    player_damage_timeout = setTimeout('handlePlayerDamage', DAMAGE_RATE);
+    //$("#player").text(player_damage_timeout);
 }
 
 function handleEnemyDamage(collided, collided_class, collider, collider_class){

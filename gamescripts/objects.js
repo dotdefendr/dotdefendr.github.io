@@ -8,16 +8,21 @@ function Player(node){
     this.health = PLAYER_HEALTH;
     this.respawnTime = RESPAWN_TIME;
     this.speed = PLAYER_SPEED;
+    this.invincible = false;
 
     // Decrement player health.
     // Return true if health is 0 (player is dead)
     // Return false otherwise.
     this.damage = function(){
-        this.health--;
-        if(this.health == 0){
-            return true;
+        if(!this.invincible){
+            this.health--;
+            if(this.health <= 0){
+                return true;
+            }
+            return false;
         }
         return false;
+
     };
 
     // Decrement the number of replays.
@@ -25,16 +30,19 @@ function Player(node){
     // otherwise reset the players health, set the respawn time,
     // and return false
     this.respawn = function(){
+        this.invincible = true;
         this.replay--;
         if(this.replay==0){
             return true;
         }
-        $(this.node).fadeTo(200, 0.5).done(function(){
-            invincible = true;
+
+
+        this.setAnimation(playerAnimation["dead"], function(node){ $(node).remove() });
+        this.node.fadeTo(200, 0.5).done(function(){
             this.node.x(PLAYGROUND_WIDTH/2);
             this.node.y(PLAYGROUND_HEIGHT/2);
             $(this.node).fadeTo(3000, 1).done(function(){
-                invincible = false;
+                this.invincible = false;
             });
         });
 
@@ -42,13 +50,15 @@ function Player(node){
         this.respawnTime = (new Date()).getTime();
 
         return false;
+
     }
 
     // update? ok I'm honestly not sure what this does. We'll see.
     this.update = function(){
         if((this.respawnTime > 0) && (((new Date()).getTime()-this.respawnTime) > PAUSE_AFTER_DEATH)){
+            this.invincible = false;
             $(this.node).fadeTo(500, 1);
-            this.respawnTime = -1;
+            this.respawnTime = RESPAWN_TIME;
         }
     }
 
@@ -88,5 +98,4 @@ function Bullet(node){
     this.direction = CROSSHAIR_DIRECTION;
     this.node = $(node);
 }
-
 

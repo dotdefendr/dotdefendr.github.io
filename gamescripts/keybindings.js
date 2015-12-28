@@ -42,19 +42,19 @@ $("#playground").mousedown(function(e){
     // This function controls what
     // happens when the user clicks.
     mouseDown = true;
-    timeout = setInterval(function(e){
+    fire_rate_timeout = setInterval(function(e){
         fire(e);
     }, FIRE_RATE);
 });
 
 $("#playground").mouseup(function(e){
     mouseDown = false;
-    clearInterval(timeout);
+    clearInterval(fire_rate_timeout);
 });
 
 $("#playground").mouseout(function(e){
     mouseDown = false;
-    clearInterval(timeout);
+    clearInterval(fire_rate_timeout);
 });
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
