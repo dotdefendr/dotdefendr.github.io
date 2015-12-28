@@ -29,9 +29,18 @@ function Player(node){
         if(this.replay==0){
             return true;
         }
+        $(this.node).fadeTo(200, 0.5).done(function(){
+            invincible = true;
+            this.node.x(PLAYGROUND_WIDTH/2);
+            this.node.y(PLAYGROUND_HEIGHT/2);
+            $(this.node).fadeTo(3000, 1).done(function(){
+                invincible = false;
+            });
+        });
+
         this.health = PLAYER_HEALTH;
         this.respawnTime = (new Date()).getTime();
-        $(this.node).fadeTo(0, 0.5);
+
         return false;
     }
 
