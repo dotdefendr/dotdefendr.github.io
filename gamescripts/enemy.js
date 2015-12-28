@@ -13,19 +13,25 @@ function updateEnemyMovement(){
         var collider = $(this);
         handleEnemyDamage(collided_with_bullet, "playerBullet", collider, "enemy");
 
-        // Check if there was a collision with the player
-        var collided_with_player = $(this).collision("#playerBody,."+$.gQ.groupCssClass);
-        if(collided_with_player.length > 0){
-            if($("#player")[0].player.damage()){
-                killPlayer($("#player"));
-                $("#crosshair").remove();
-                killcount = 0;
-            }
-        }
+        handlePlayerDamage(this);
 
         // Update the movement
         this.enemy.update($("#player"));
     });
+}
+
+function handlePlayerDamage(enemy){
+    // Check if there was a collision with the player
+    var collided_with_player = $(enemy).collision("#playerBody,."+$.gQ.groupCssClass);
+    if(collided_with_player.length > 0 && !invincible){
+        if($("#player")[0].player.damage()){
+            killPlayer($("#player"));
+            $("#crosshair").remove();
+            killcount = 0;
+        }
+
+    }
+    setTimeout('handlePlayerDamage', DAMAGE_RATE);
 }
 
 function handleEnemyDamage(collided, collided_class, collider, collider_class){
