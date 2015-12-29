@@ -14,7 +14,7 @@ const BULLET_SPEED = 40; // pixels per frame
 const FIRE_RATE = 250; // Wait 250 ms between firing each bullet
 const DAMAGE_RATE = 10; // 1 damage per second
 const INVINCIBLE = 2000;
-const FLASH_SPEED = 1000;
+const FLASH_SPEED = 250;
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
@@ -56,3 +56,4 @@ var killcount = 0;
 var mouseDown = false;
 var fire_rate_timeout;
 var damage_rate_timeout;
+var flash_timeout;
