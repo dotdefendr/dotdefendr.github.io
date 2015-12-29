@@ -32,22 +32,20 @@ function Player(node){
     this.respawn = function(){
         this.invincible = true;
         this.replay--;
-        if(this.replay==0){
-            return true;
-        }
+        //alert("Replays: " + this.replay);
 
 
-        this.setAnimation(playerAnimation["dead"], function(node){ $(node).remove() });
-        this.node.fadeTo(200, 0.5).done(function(){
-            this.node.x(PLAYGROUND_WIDTH/2);
-            this.node.y(PLAYGROUND_HEIGHT/2);
-            $(this.node).fadeTo(3000, 1).done(function(){
-                this.invincible = false;
-            });
-        });
+        //this.setAnimation(playerAnimation["dead"], function(node){ $(node).remove() });
+        this.node.x(PLAYGROUND_WIDTH/2);
+        this.node.y(PLAYGROUND_HEIGHT/2);
+        this.invincible = false;
 
         this.health = PLAYER_HEALTH;
         this.respawnTime = (new Date()).getTime();
+
+        if(this.replay==0){
+            return true;
+        }
 
         return false;
 

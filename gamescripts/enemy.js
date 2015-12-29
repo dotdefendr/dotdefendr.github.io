@@ -27,7 +27,6 @@ function handlePlayerDamage(enemy){
         collided_with_player.each(function(){
             if($("#player")[0].player.damage()){
                 killPlayer($("#player"));
-                killcount = 0;
             }
             clearTimeout(player_damage_timeout);
         });

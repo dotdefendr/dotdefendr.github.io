@@ -7,10 +7,10 @@ $(document).keydown(function(e){
             case 13: // enter
                 $("#startbutton").trigger("click");
                 break;
-            case 27:
-                restartGame();
-                break;
         }
+    }
+    if(e.keyCode == 27){ // Escape was pressed
+        restartGame();
     }
 });
 

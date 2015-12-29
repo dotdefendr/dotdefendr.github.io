@@ -18,3 +18,13 @@ function updateUI(){
     $("#lives").html("<div class='pull-right'>Lives: "+$("#player")[0].player.replay+"</div>");
 
 }
+
+function flashScreen(){
+    if($("#flash")){
+        $("#flash").remove();
+    } else {
+        $(document).append("<div id='flash'></div>");
+        setTimeout("flashScreen", FLASH_SPEED);
+    }
+
+}

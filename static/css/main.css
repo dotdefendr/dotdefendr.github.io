@@ -2,6 +2,13 @@ body {
     background-color: #333;
 }
 
+#flash {
+    background-color: #fff;
+    height: 100%;
+    width: 100;
+    position: absolute;
+}
+
 #gameframe {
     height: 400px;
     margin-top: 2em;

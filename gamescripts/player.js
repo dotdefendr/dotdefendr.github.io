@@ -8,6 +8,7 @@ function killPlayer(playerNode){
     playerNode.addSprite("dead", {animation: playerAnimation["dead"], width: 20, height: 20 });
     playerHit = true;
     invincible = true;
+    flashScreen();
 };
 
 function updateCrosshair(e){
@@ -140,21 +141,21 @@ function updatePlayerMovement(){
         }
     } else {
         if($("#player")[0].player.respawn()){
-            gameOver = true;
             $("#playground").append("<div class='text-center'><h2>GAME OVER</h2></div><div class='text-center'><a href='#' id='restartbutton'>Try Again?</a></div>");
-            $("#restartbutton").click(function(){
-                restartGame();
-            });
             $("#actors,#playerBulletLayer,#overlay").fadeTo(1000,0);
             $("#background").fadeTo(3000, 0);
-        } else {
-            playerHit = false;
-            invincible = false;
-            $("#player").addSprite("idle", {animation: playerAnimation["idle"], width: 20, height: 20 });
-            $("#player").children().show();
-            $("#player").x(PLAYGROUND_WIDTH/2);
-            $("#player").y(PLAYGROUND_HEIGHT/2);
+            gameOver = true;
         }
+        playerHit = false;
+        invincible = false;
+        $("#player").addSprite("idle", {animation: playerAnimation["idle"], width: 20, height: 20 });
+        $("#player").children().show();
+        $("#player").x(PLAYGROUND_WIDTH/2);
+        $("#player").y(PLAYGROUND_HEIGHT/2);
 
     }
 }
+
+$("#restartbutton").click(function(){
+    restartGame();
+});
