@@ -20,11 +20,9 @@ function updateUI(){
 }
 
 function flashScreen(){
-    if($("#flash")){
-        $("#flash").remove();
-    } else {
-        $(document).append("<div id='flash'></div>");
-        setTimeout("flashScreen", FLASH_SPEED);
-    }
-
+    $("#playground").append("<div id='flash'></div>");
+    $("#flash").height(PLAYGROUND_HEIGHT);
+    $("#flash").width(PLAYGROUND_WIDTH);
+    $("#flash").fadeIn(FLASH_SPEED).fadeOut(FLASH_SPEED);
+    $("#playground").remove("#flash");
 }
