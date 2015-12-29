@@ -47,13 +47,23 @@ $(function(){
 
     // Enemy Animations
     enemies[0] = new Array();
-    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/grunt_enemy.png"});//, numberOfFrame: 5, delta: 52, rate: 60, type: $.gQ.ANIMATION_VERTICAL});
-    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/grunt_enemy_dead.png"});//, numberOfFrame: 5, delta: 52, rate: 30, type: $.gQ.ANIMATION_VERTICAL | $.gQ.ANIMATION_CALLBACK});
+    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/grunt_enemy.png"});
+    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/grunt_enemy_dead.png"});
+
+    enemies[1] = new Array();
+    enemies[1]["idle"] = new $.gQ.Animation({imageURL: "img/purple_enemy.png"});
+    enemies[1]["dead"] = new $.gQ.Animation({imageURL: "img/purple_enemy_dead.png"});
+
+    enemies[2] = new Array();
+    enemies[2]["idle"] = new $.gQ.Animation({imageURL: "img/purple_enemy_big.png"});
+    enemies[2]["dead"] = new $.gQ.Animation({imageURL: "img/purple_enemy_big_dead.png"});
 
     // Bullet Animations
-    bullet["player"] = new $.gQ.Animation({imageURL: "img/bullet.png"});//, numberOfFrame: 6, delta: 10, rate: 90, type: $.gQ.ANIMATION_VERTICAL});
+    bullet["player"] = new $.gQ.Animation({imageURL: "img/bullet.png"});
+    bullet["purple"] = new $.gQ.Animation({imageURL: "img/bullet_powerup_purple.png"});
+    bullet["blue"] = new $.gQ.Animation({imageURL: "img/bullet_powerup_blue.png"});
 
-    crosshair["aim"] = new $.gQ.Animation({imageURL: "img/crosshair_complex.png"});
+    crosshair["aim"] = new $.gQ.Animation({imageURL: "img/crosshair.png"});
 
     //--------------------------------- Place everything within the playground -------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
@@ -92,7 +102,6 @@ $(function(){
     .addGroup("overlay", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
         .addGroup("crosshair", {posx: PLAYGROUND_WIDTH/2, posy: PLAYGROUND_HEIGHT/2, width: CROSSHAIR_WIDTH, height: CROSSHAIR_HEIGHT})
             .addSprite("crosshairSprite", {animation: crosshair["aim"], posx: 0, posy: 0, width: CROSSHAIR_WIDTH, height: CROSSHAIR_HEIGHT});
-
 
     // Initialize the player.
     //      The player <div> is turned into an array
