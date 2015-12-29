@@ -141,10 +141,7 @@ function updatePlayerMovement(){
         }
     } else {
         if($("#player")[0].player.respawn()){
-            $("#playground").append("<div class='text-center'><h2>GAME OVER</h2></div><div class='text-center'><a href='#' id='restartbutton'>Try Again?</a></div>");
-            $("#actors,#playerBulletLayer,#overlay").fadeTo(1000,0);
-            $("#background").fadeTo(3000, 0);
-            gameOver = true;
+            endGameScreen();
         }
         playerHit = false;
         invincible = false;
