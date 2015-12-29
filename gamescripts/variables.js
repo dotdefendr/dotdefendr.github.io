@@ -26,8 +26,8 @@ var PLAYER_POSITION = [];
 
 // Stuff involving the crosshair
 const MAX_CROSSHAIR_DISTANCE = 75;
-const CROSSHAIR_WIDTH = 7;
-const CROSSHAIR_HEIGHT = 7;
+const CROSSHAIR_WIDTH = 10;
+const CROSSHAIR_HEIGHT = 10;
 var MOUSE_POSITION = [];
 var CROSSHAIR_DIRECTION = 0; // in radians
 
@@ -43,7 +43,7 @@ var NUM_ENEMIES = 0;
 var playerAnimation = new Array();
 var crosshair = new Array();
 var bullet = new Array();
-var enemies = new Array(1); // only 1 kind of enemy in the game for now
+var enemies = new Array(2); // only 1 kind of enemy in the game for now
 
 // Game State
 var bossWave = false;
