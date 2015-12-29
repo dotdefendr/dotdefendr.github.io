@@ -35,10 +35,8 @@ function Player(node){
         //alert("Replays: " + this.replay);
 
 
-        //this.setAnimation(playerAnimation["dead"], function(node){ $(node).remove() });
         this.node.x(PLAYGROUND_WIDTH/2);
         this.node.y(PLAYGROUND_HEIGHT/2);
-        this.invincible = false;
 
         this.health = PLAYER_HEALTH;
         this.respawnTime = (new Date()).getTime();
