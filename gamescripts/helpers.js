@@ -26,3 +26,18 @@ function flashScreen(){
     $("#flash").fadeIn(FLASH_SPEED).fadeOut(FLASH_SPEED);
     $("#playground").remove("#flash");
 }
+
+function endGameScreen(){
+    $("#actors,#playerBulletLayer,#overlay").fadeTo(1000,0);
+    $("#background").fadeTo(3000, 0);
+    gameOver = true;
+    var template = "";
+    $.ajax({
+        url: "gamescripts/templates/endgame.html",
+        type: 'get',
+        async: true,
+        success: function(html){
+            $("#playground").append(html);
+        }
+    });
+}
