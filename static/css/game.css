@@ -27,7 +27,7 @@
 #loadingBar {
     position: relative;
     width: 0px;
-    height: 15px;
+    height: 10px;
     background-color: red;
 }
 
