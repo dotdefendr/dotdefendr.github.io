@@ -37,21 +37,25 @@ function handlePlayerDamage(enemy){
 
 function handleEnemyDamage(collided, collided_class, collider, collider_class){
     if(collided.length > 0){
-        collided.each(function(){
-            if($(this)[0].enemy.damage()){
-                killcount++;
-                NUM_ENEMIES--;
-                $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
-                $(this).removeClass(collided_class);
-                collider.removeClass(collider_class);
-                collider.remove();
-                $(this).fadeTo(3000,0).done(function(){
-                    $(this).remove();
-                });
-            }
-        });
-        $(this).removeClass("playerBullet");
-        $(this).remove();
+        try {
+            collided.each(function(){
+                if($(this)[0].enemy.damage()){
+                    killcount++;
+                    NUM_ENEMIES--;
+                    $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
+                    $(this).removeClass(collided_class);
+                    collider.removeClass(collider_class);
+                    collider.remove();
+                    $(this).fadeTo(3000,0).done(function(){
+                        $(this).remove();
+                    });
+                }
+            });
+            $(this).removeClass("playerBullet");
+            $(this).remove();
+        } catch(e){
+            // Enemy already dead
+        }
     }
 }
 
