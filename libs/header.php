@@ -12,5 +12,6 @@
     <script type="text/javascript" src="gamescripts/main.js"></script>
     <link rel="stylesheet" href="static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/game.css" />
 </head>
 <body>
