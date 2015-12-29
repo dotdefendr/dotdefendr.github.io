@@ -1,0 +1,41 @@
+#flash {
+    background-color: #000;
+}
+
+#gameframe {
+    height: 400px;
+    margin-top: 2em;
+    width: 100%;
+    cursor: none;
+}
+
+#hud {
+    padding: 5px;
+    font-size: 18px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#instructions {
+    color: #ddd;
+}
+
+#loadingBar {
+    position: relative;
+    width: 0px;
+    height: 15px;
+    background-color: red;
+}
+
+#playground {
+    background-color: #333;
+}
+
+#welcomeScreen {
+    position: absolute;
+    margin: 0 auto;
+}
