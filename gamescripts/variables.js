@@ -10,11 +10,17 @@ const PLAYGROUND_WIDTH = 1000;
 const REFRESH_RATE = 25;
 const PAUSE_AFTER_DEATH = 5000;
 const RESPAWN_TIME = -1;
-const BULLET_SPEED = 40; // pixels per frame
-const FIRE_RATE = 250; // Wait 250 ms between firing each bullet
 const DAMAGE_RATE = 10; // 1 damage per second
 const INVINCIBLE = 2000;
 const FLASH_SPEED = 250;
+
+// Initialize Bullets
+const MAX_BULLETS = 20;
+const BULLET_SIZE = 7;
+const BULLET_SPEED = 30; // pixels per frame
+const FIRE_RATE = 150; // Wait 150 ms between firing each bullet
+var FREE_BULLETS = [];
+var FIRED_BULLETS = [];
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get

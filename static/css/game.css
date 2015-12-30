@@ -12,6 +12,7 @@
 #hud {
     padding: 5px;
     font-size: 18px;
+    color: #000;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -32,7 +33,7 @@
 }
 
 #playground {
-    background-color: #333;
+    background-color: #111;
 }
 
 #welcomeScreen {

@@ -78,22 +78,16 @@ function getDistance(point1, point2){
 
 
 function fire(e){
-    if(!gameOver && mouseDown){
+    if(!gameOver){
         updateCrosshair(e);
         var playerposx = $("#player").x();
         var playerposy = $("#player").y();
-        bulletCount = (bulletCount + 1) % 100000;
-        var name = "playerBullet_" + bulletCount;
-        $("#playerBulletLayer").addSprite(name, {
-            animation: bullet["player"],
-            posx: playerposx + (PLAYER_WIDTH/2 - 2),
-            posy: playerposy + (PLAYER_HEIGHT/2 - 2),
-            width: 5,
-            height: 5
-        });
-        $("#"+name).addClass("playerBullet");
-        $("#"+name)[0].bullet = new Bullet($("#"+name));
-        $("#"+name)[0].bullet.direction = CROSSHAIR_DIRECTION;
+        bulletCount = (bulletCount + 1);
+        var fired_bullet = FREE_BULLETS.pop();
+        fired_bullet[0].bullet.x(playerposx);
+        fired_bullet[0].bullet.y(playerposy);
+        fired_bullet[0].bullet.direction = CROSSHAIR_DIRECTION;
+        FIRED_BULLETS.append(fired_bullet);
     }
 
 }

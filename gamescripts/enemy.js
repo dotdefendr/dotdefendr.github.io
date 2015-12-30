@@ -44,15 +44,14 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
                     NUM_ENEMIES--;
                     $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
                     $(this).removeClass(collided_class);
-                    collider.removeClass(collider_class);
-                    collider.remove();
                     $(this).fadeTo(3000,0).done(function(){
                         $(this).remove();
+                        $(this) = null;
                     });
                 }
             });
-            $(this).removeClass("playerBullet");
-            $(this).remove();
+            FIRED_BULLETS.pop();
+            FREE_BULLETS.append(collider);
         } catch(e){
             // Enemy already dead
         }
@@ -62,7 +61,7 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
 // This function spawns enemies from the left side of the screen only
 function leftSpawn(){
     if(!gameOver && !bossWave){
-        var posy = Math.random()*PLAYGROUND_HEIGHT;
+        var posy = Math.random()*(PLAYGROUND_HEIGHT - 10) + 5;
         var name = "enemy1_"+Math.ceil(Math.random()*1000);
         $("#actors").addSprite(name, {animation: enemies[0]["idle"], posx: 0, posy: posy, width: PLAYER_WIDTH, height: PLAYER_HEIGHT});
         $("#"+name).addClass("enemy");
