@@ -64,41 +64,6 @@ function updateCrosshair(e){
     }
 }
 
-function getRadians(point1, point2){
-    var dx = point1[0] - point2[0];
-    var dy = point1[1] - point2[1];
-    return Math.atan2(dy, dx);
-}
-
-function getDistance(point1, point2){
-    var dx = point1[0] - point2[0];
-    var dy = point1[1] - point2[1];
-    return Math.floor(Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2)));
-}
-
-
-function fire(e){
-    if(!gameOver){
-        updateCrosshair(e);
-
-        var playerposx = $("#player").x() + (PLAYER_WIDTH - BULLET_SIZE)/2;
-        var playerposy = $("#player").y() + (PLAYER_HEIGHT - BULLET_SIZE)/2;
-        bulletCount = (bulletCount + 1);
-        CURRENT_BULLET = Number(CURRENT_BULLET+1) % Number(MAX_BULLETS);
-        var expired = (Number(new Date) - Number(BULLETS[CURRENT_BULLET][0].bullet.age)) > EXPIRATION;
-        countBulletsForLog();
-        if(!BULLETS[CURRENT_BULLET][0].bullet.fired){
-            var fired_bullet = BULLETS[CURRENT_BULLET];
-            $(fired_bullet)[0].bullet.fired = true;
-            $(fired_bullet)[0].bullet.age = new Date;
-            $(fired_bullet).x(playerposx);
-            $(fired_bullet).y(playerposy);
-            $(fired_bullet)[0].bullet.direction = CROSSHAIR_DIRECTION;
-            $(fired_bullet).fadeIn(0,1);
-        }
-    }
-}
-
 function updatePlayerMovement(){
     // Update the player's movement
     if(!playerHit){

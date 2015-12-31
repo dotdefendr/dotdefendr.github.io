@@ -41,19 +41,22 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
     if(collided.length > 0){
         try {
             collided.each(function(){
-                if($(this)[0].enemy.damage()){
-                    killcount++;
-                    NUM_ENEMIES--;
-                    $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
-                    $(this).removeClass(collided_class);
-                    $(this).fadeTo(3000,0).done(function(){
-                        $(this).remove();
-                        $(this) = null;
-                    });
+                if($(collider)[0].bullet.fired){
+                    if($(this)[0].enemy.damage()){
+                        killcount++;
+                        NUM_ENEMIES--;
+                        $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
+                        $(this).removeClass(collided_class);
+                        BULLETS[$(collider)[0].bullet.index][0].bullet.fired = false;
+                        $(collider).fadeOut(0);
+                        $(this).fadeOut(3000,0).promise().done(function(){
+                            $(this).remove();
+                        });
+                    }
                 }
             });
-            BULLETS[$(collider)[0].bullet.index][0].bullet.fired = false;
         } catch(e){
+            console.log(e.stack);
             // Enemy already dead
         }
     }

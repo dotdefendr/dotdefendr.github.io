@@ -95,6 +95,13 @@ function Bullet(node){
     this.node = $(node);
     this.fired = false;
     this.index;
-    this.age = 0;
+    this.birth = Date.now();
+
+    this.age = function(){
+        if(this.birth != 0){
+            return Number((new Date).getTime() - this.birth);
+        }
+        return Number(0);
+    };
 }
 

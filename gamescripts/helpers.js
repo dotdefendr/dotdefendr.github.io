@@ -42,6 +42,18 @@ function endGameScreen(){
     });
 }
 
+function getRadians(point1, point2){
+    var dx = point1[0] - point2[0];
+    var dy = point1[1] - point2[1];
+    return Math.atan2(dy, dx);
+}
+
+function getDistance(point1, point2){
+    var dx = point1[0] - point2[0];
+    var dy = point1[1] - point2[1];
+    return Math.floor(Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2)));
+}
+
 function countBulletsForLog(){
     console.log(CURRENT_BULLET)
     console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
