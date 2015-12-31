@@ -50,8 +50,6 @@ function fire(e){
         bulletCount = (bulletCount + 1);
         CURRENT_BULLET = Number(CURRENT_BULLET+1) % Number(MAX_BULLETS);
 
-        countBulletsForLog();
-
         // If a bullet has been out for longer than it should
         // take to cross the screen, reload it. It's buggy.
         var live_bullet = Number(BULLETS[CURRENT_BULLET][0].bullet.age()) < EXPIRATION;
