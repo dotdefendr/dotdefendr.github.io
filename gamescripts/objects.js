@@ -32,8 +32,6 @@ function Player(node){
     this.respawn = function(){
         this.invincible = true;
         this.replay--;
-        //alert("Replays: " + this.replay);
-
 
         this.node.x(PLAYGROUND_WIDTH/2);
         this.node.y(PLAYGROUND_HEIGHT/2);
@@ -49,7 +47,6 @@ function Player(node){
 
     }
 
-    // update? ok I'm honestly not sure what this does. We'll see.
     this.update = function(){
         if((this.respawnTime > 0) && (((new Date()).getTime()-this.respawnTime) > PAUSE_AFTER_DEATH)){
             this.invincible = false;
