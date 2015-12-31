@@ -11,6 +11,20 @@ function killPlayer(playerNode){
     flashScreen();
 };
 
+function handlePlayerDamage(enemy){
+    // Check if there was a collision with the player
+    var collided_with_player = $(enemy).collision("#playerBody,."+$.gQ.groupCssClass);
+    // if an enemy has collided with the player, inflict damage.
+    // Kill the player if they run out of health.
+    if(collided_with_player.length > 0){
+        collided_with_player.each(function(){
+            if($("#player")[0].player.damage()){
+                killPlayer($("#player"));
+            }
+        });
+    }
+}
+
 function updateCrosshair(e){
     // To figure out the mouse position,
     // we need somewhere to store it,

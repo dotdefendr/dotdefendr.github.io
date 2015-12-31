@@ -12,43 +12,38 @@ function updateEnemyMovement(){
         var collided_with_bullet = $(this).collision(".playerBullet,."+$.gQ.groupCssClass);
         var collider = $(this);
         if(collided_with_bullet.length > 0){
+            // If the enemy collided with a bullet, the enemy is damaged.
             handleEnemyDamage(collider, "enemy", collided_with_bullet, "playerBullet");
-
-            handlePlayerDamage($(this));
-
         }
+        // handle the players damage
+        handlePlayerDamage($(this));
+
         // Update the movement
         this.enemy.update($("#player"));
     });
 }
 
-function handlePlayerDamage(enemy){
-    // Check if there was a collision with the player
-    var collided_with_player = $(enemy).collision("#playerBody,."+$.gQ.groupCssClass);
-    if((collided_with_player.length > 0) && (player_damage_timeout > DAMAGE_RATE)){
-        collided_with_player.each(function(){
-            if($("#player")[0].player.damage()){
-                killPlayer($("#player"));
-            }
-            clearTimeout(player_damage_timeout);
-        });
-    }
-    player_damage_timeout = setTimeout('handlePlayerDamage', DAMAGE_RATE);
-    //$("#player").text(player_damage_timeout);
-}
-
+// This function handles what happens when
+// an enemy collides with a bullet.
 function handleEnemyDamage(collided, collided_class, collider, collider_class){
     if(collided.length > 0){
         try {
+            // For every bullet that has collided
             collided.each(function(){
+                // if the bullet was fired
                 if($(collider)[0].bullet.fired){
+                    // and the enemy was killed
                     if($(this)[0].enemy.damage()){
+                        // Increment stats
                         killcount++;
                         NUM_ENEMIES--;
-                        $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
-                        $(this).removeClass(collided_class);
+
+                        // Remove the bullet.
                         BULLETS[$(collider)[0].bullet.index][0].bullet.fired = false;
                         $(collider).fadeOut(0);
+                        // Remove the enemy.
+                        $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
+                        $(this).removeClass(collided_class);
                         $(this).fadeOut(3000,0).promise().done(function(){
                             $(this).remove();
                         });
@@ -56,6 +51,9 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
                 }
             });
         } catch(e){
+            // We may not need this try/catch anymore.
+            // But I'm leaving it here in case any bugs
+            // try to creep in later.
             console.log(e.stack);
             // Enemy already dead
         }
