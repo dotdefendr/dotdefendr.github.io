@@ -80,16 +80,17 @@ function getDistance(point1, point2){
 function fire(e){
     if(!gameOver){
         updateCrosshair(e);
-        var playerposx = $("#player").x();
-        var playerposy = $("#player").y();
-        bulletCount = (bulletCount + 1);
-        var fired_bullet = FREE_BULLETS.pop();
-        fired_bullet[0].bullet.x(playerposx);
-        fired_bullet[0].bullet.y(playerposy);
-        fired_bullet[0].bullet.direction = CROSSHAIR_DIRECTION;
-        FIRED_BULLETS.append(fired_bullet);
-    }
 
+        var playerposx = $("#player").x() + (PLAYER_WIDTH - BULLET_SIZE)/2;
+        var playerposy = $("#player").y() + (PLAYER_HEIGHT - BULLET_SIZE)/2;
+        bulletCount = (bulletCount + 1);
+
+        $(fired_bullet).x(playerposx);
+        $(fired_bullet).y(playerposy);
+        $(fired_bullet)[0].bullet.direction = CROSSHAIR_DIRECTION;
+        $(fired_bullet).fadeIn(0,1);
+    }
+    countBulletsForLog();
 }
 
 function updatePlayerMovement(){

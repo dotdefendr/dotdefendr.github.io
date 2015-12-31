@@ -115,23 +115,22 @@ $(function(){
 
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
-    function loadBullets(){
-        for(i=0; i < MAX_BULLETS; i++){
-            var name = "playerBullet_" + i;
-            $("#playerBulletLayer").addSprite(name, {
-                animation: bullet["player"],
-                posx: PLAYGROUND_WIDTH/2,
-                posy: PLAYGROUND_HEIGHT/2,
-                width: BULLET_SIZE,
-                height: BULLET_SIZE
-            });
-            $("#"+name).addClass("playerBullet");
-            $("#"+name)[0].bullet = new Bullet($("#"+name));
-            $(FREE_BULLETS).append($("#"+name));
-        }
+    for(i=0; i < MAX_BULLETS; i++){
+        var name = "playerBullet_" + i;
+        $("#playerBulletLayer").addSprite(name, {
+            animation: bullet["player"],
+            posx: PLAYGROUND_WIDTH/2 + (PLAYER_WIDTH - BULLET_SIZE)/2,
+            posy: PLAYGROUND_HEIGHT/2 + (PLAYER_HEIGHT - BULLET_SIZE)/2,
+            width: BULLET_SIZE,
+            height: BULLET_SIZE
+        });
+        $("#"+name).addClass("playerBullet");
+        $("#"+name)[0].bullet = new Bullet($("#"+name));
+        $("#"+name).fadeOut(0,0);
+        BULLETS = BULLETS.concat([$("#"+name)]);
     }
-
-    loadBullets();
+    //--------------------------------------------------------------------------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------------------------//
     // Center the game
     var width = $(document).width();
     var padding = (width - $('#playground').width())/2;

@@ -50,8 +50,6 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
                     });
                 }
             });
-            FIRED_BULLETS.pop();
-            FREE_BULLETS.append(collider);
         } catch(e){
             // Enemy already dead
         }

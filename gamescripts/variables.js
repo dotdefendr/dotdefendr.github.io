@@ -18,9 +18,9 @@ const FLASH_SPEED = 250;
 const MAX_BULLETS = 20;
 const BULLET_SIZE = 7;
 const BULLET_SPEED = 30; // pixels per frame
-const FIRE_RATE = 150; // Wait 150 ms between firing each bullet
-var FREE_BULLETS = [];
-var FIRED_BULLETS = [];
+const FIRE_RATE = 200; // Wait 200 ms between firing each bullet
+var BULLETS = [];
+var CURRENT_BULLET = 0;
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
