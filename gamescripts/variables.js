@@ -17,7 +17,7 @@ const FLASH_SPEED = 250;
 // Initialize Bullets
 const MAX_BULLETS = 20;
 const BULLET_SIZE = 7;
-const BULLET_SPEED = 40;    // pixels per frame
+const BULLET_SPEED = 25;    // pixels per frame (any faster and things get glitchy)
 const FIRE_RATE = 200;      // Wait 200 ms between firing each bullet
 const EXPIRATION = 1000;    // Bullets older than this are automatically reloaded
 var BULLETS = [];           // Array to loop through
