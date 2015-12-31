@@ -126,6 +126,7 @@ $(function(){
         });
         $("#"+name).addClass("playerBullet");
         $("#"+name)[0].bullet = new Bullet($("#"+name));
+        $("#"+name)[0].index = i;
         $("#"+name).fadeOut(0,0);
         BULLETS = BULLETS.concat([$("#"+name)]);
     }

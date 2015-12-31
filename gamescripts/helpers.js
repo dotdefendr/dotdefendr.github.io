@@ -43,7 +43,6 @@ function endGameScreen(){
 }
 
 function countBulletsForLog(){
-    console.log("FIRED: " + FIRED_BULLETS.length + " " + FIRED_BULLETS);
-    console.log("FREE: " + FREE_BULLETS.length + " " + FREE_BULLETS);
-    console.log("TOTAL: " + String(Number(FIRED_BULLETS.length)+Number(FREE_BULLETS.length)));
+    console.log(CURRENT_BULLET)
+    console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
 }

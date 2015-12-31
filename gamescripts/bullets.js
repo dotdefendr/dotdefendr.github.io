@@ -13,17 +13,18 @@ function updateBulletMovement(){
         var posy = $(this).y();
 
         // Check if out of bounds
-        if(posx > PLAYGROUND_WIDTH || posy > PLAYGROUND_HEIGHT){
+        if(posx < 0 || posx > PLAYGROUND_WIDTH || posy > PLAYGROUND_HEIGHT || posy < 0){
             //$("#playerBulletLayer").remove($(this));
+            $(this)[0].bullet.fired = false;
             $(this).fadeOut(0,0);
             return;
         }
         // Check if there was a collision
         var collided = $(this).collision(".enemy,."+$.gQ.groupCssClass);
         var collider = $(this);
-
-        handleEnemyDamage(collided, "enemy", collider, "playerBullet");
-
+        if(collided.length > 0){
+            handleEnemyDamage(collided, "enemy", collider, "playerBullet");
+        }
         // Figure out the next position
         var nextX = Math.round(Math.cos($(this)[0].bullet.direction) * BULLET_SPEED + posx);
         var nextY = Math.round(Math.sin($(this)[0].bullet.direction) * BULLET_SPEED + posy);

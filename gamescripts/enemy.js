@@ -11,10 +11,12 @@ function updateEnemyMovement(){
         // Check if there was a collision with a bullet
         var collided_with_bullet = $(this).collision(".playerBullet,."+$.gQ.groupCssClass);
         var collider = $(this);
-        handleEnemyDamage(collided_with_bullet, "playerBullet", collider, "enemy");
+        if(collided_with_bullet.length > 0){
+            handleEnemyDamage(collider, "enemy", collided_with_bullet, "playerBullet");
 
-        handlePlayerDamage($(this));
+            handlePlayerDamage($(this));
 
+        }
         // Update the movement
         this.enemy.update($("#player"));
     });
@@ -50,6 +52,7 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
                     });
                 }
             });
+            BULLETS[$(collider)[0].bullet.index][0].bullet.fired = false;
         } catch(e){
             // Enemy already dead
         }

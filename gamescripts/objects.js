@@ -94,5 +94,7 @@ function Bullet(node){
     this.direction = CROSSHAIR_DIRECTION;
     this.node = $(node);
     this.fired = false;
+    this.index;
+    this.age = 0;
 }
 

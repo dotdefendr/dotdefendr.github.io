@@ -19,6 +19,7 @@ const MAX_BULLETS = 20;
 const BULLET_SIZE = 7;
 const BULLET_SPEED = 30; // pixels per frame
 const FIRE_RATE = 200; // Wait 200 ms between firing each bullet
+const EXPIRATION = 1000;
 var BULLETS = [];
 var CURRENT_BULLET = 0;
 
