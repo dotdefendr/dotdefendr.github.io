@@ -5,7 +5,7 @@ function killPlayer(playerNode){
     playerNode.children().hide();
 
     // Add a "dead" animation
-    playerNode.addSprite("dead", {animation: playerAnimation["dead"], width: 20, height: 20 });
+    playerNode.addSprite("invincible", {animation: playerAnimation["invincible"], width: 20, height: 20 });
     playerHit = true;
     invincible = true;
     flashScreen();
@@ -132,7 +132,3 @@ function updatePlayerMovement(){
 
     }
 }
-
-$("#restartbutton").click(function(){
-    restartGame();
-});

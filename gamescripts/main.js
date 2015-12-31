@@ -42,8 +42,9 @@ $(function(){
     var background2 = new $.gQ.Animation({imageURL: "img/bg_concrete.png"});
 
     // Player Animations
-    playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player.png"});
+    playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player1.png"});
     playerAnimation["dead"] = new $.gQ.Animation({imageURL: "img/player_dead.png"});
+    playerAnimation["invincible"] = new $.gQ.Animation({imageURL: "img/player_invincible.png"});
 
     // Enemy Animations
     enemies[0] = new Array();

@@ -17,11 +17,11 @@ const FLASH_SPEED = 250;
 // Initialize Bullets
 const MAX_BULLETS = 20;
 const BULLET_SIZE = 7;
-const BULLET_SPEED = 30; // pixels per frame
-const FIRE_RATE = 200; // Wait 200 ms between firing each bullet
-const EXPIRATION = 1000;
-var BULLETS = [];
-var CURRENT_BULLET = 0;
+const BULLET_SPEED = 40;    // pixels per frame
+const FIRE_RATE = 200;      // Wait 200 ms between firing each bullet
+const EXPIRATION = 1000;    // Bullets older than this are automatically reloaded
+var BULLETS = [];           // Array to loop through
+var CURRENT_BULLET = 0;     // Pointer to current bullet
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
@@ -29,10 +29,10 @@ const PLAYER_HEALTH = 20;
 const PLAYER_SPEED = 5; // Player initial speed
 const PLAYER_WIDTH = 20;
 const PLAYER_HEIGHT = 20;
-var PLAYER_POSITION = [];
+var PLAYER_POSITION = []; // list containing [x,y] coordinates
 
 // Stuff involving the crosshair
-const MAX_CROSSHAIR_DISTANCE = 75;
+const MAX_CROSSHAIR_DISTANCE = 100;
 const CROSSHAIR_WIDTH = 10;
 const CROSSHAIR_HEIGHT = 10;
 var MOUSE_POSITION = [];
@@ -50,7 +50,7 @@ var NUM_ENEMIES = 0;
 var playerAnimation = new Array();
 var crosshair = new Array();
 var bullet = new Array();
-var enemies = new Array(2); // only 1 kind of enemy in the game for now
+var enemies = new Array(2);
 
 // Game State
 var bossWave = false;

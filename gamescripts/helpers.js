@@ -1,10 +1,16 @@
-//---------------------------------------------------------------------------------------------------//
-//----------------------------------------- Game general helpers ------------------------------------//
+//
+//  This file just has a bunch of helper
+//  functions. Most of it will probably
+//  be categorized and moved later.
+//
+
+
 // Nice reboot function
 function restartGame(){
     window.location.reload();
 };
 
+// Function to update the user interface.
 function updateUI(){
     var accuracy = Math.round((killcount/bulletCount)*100);
     if(!accuracy){
@@ -58,3 +64,7 @@ function countBulletsForLog(){
     console.log(CURRENT_BULLET)
     console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
 }
+
+$("#restartbutton").click(function(){
+    restartGame();
+});
