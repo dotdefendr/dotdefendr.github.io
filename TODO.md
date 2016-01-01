@@ -5,9 +5,23 @@ The following is a list of tasks that have not yet been completed.
 
 ### Instructions
 
-Pick a task and create a branch for it. Only add commits having to do with that task.
-In your pull request, edit this file to show the ~~crossed out task~~ followed by the
-date and your username.
+Each task can be claimed by a user.
+Claimed tasks should be formatted as follows:
+
+- Task description - Username - Starting date
+
+For example:
+
+- Add bullet movement animation - dotdefendr - 12/27/15
+
+Finished tasks should be crossed out and included in their
+respective pull requests. The date of completion should 
+also be appended. For example:
+
+- ~~Add bullet movement animation~~ - dotdefender - 12/27/15 - 12/30/15
+
+Pick a task and create a branch for it. 
+Only add commits having to do with that task.
 
 ## Tasks
 
