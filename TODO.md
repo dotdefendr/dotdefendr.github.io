@@ -25,7 +25,7 @@ Only add commits having to do with that task.
 
 ## Tasks
 
-- ~~Move tasks into separate file.~~ 12/31 kfarr2
+- ~~Move tasks into separate file.~~ - kfarr2 - 12/31/15 - 12/31/15
 - Add title to beginning screen.
 - Add player stats to end screen.
 - Add "bounce" effect for enemies that collide with players.
