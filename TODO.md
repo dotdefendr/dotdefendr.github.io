@@ -28,3 +28,5 @@ date and your username.
 ## Known Bugs
 
 - Occasionally enemies will freeze where they spawned. The sprite remains while the object is unresponsive to collisions.
+- Sometimes page will not finish loading and playground will be left-aligned.
+
