@@ -74,8 +74,8 @@ In your pull request, edit this file to show the crossed out task after completi
 - Add obstacle collision logic for players, bullets and enemies.
 - Debug obstacle layer.
 - Add "Wave" functionality.
-- *EITHER:* Define `wave` serializable data structure.
-- *OR:* Write dynamic wave generation logic.
+- **EITHER:** Define `wave` serializable data structure.
+- **OR:** Write dynamic wave generation logic.
 - Add `achievements` layer.
 - Define `achievement` serializable data structure (so achievements can be loaded from a `.json` file).
 
