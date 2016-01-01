@@ -102,3 +102,8 @@ function Bullet(node){
     };
 }
 
+function Obstacle(node){
+    this.posx;
+    this.posy;
+    this.node = $(node);
+}

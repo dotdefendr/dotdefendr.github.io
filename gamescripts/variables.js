@@ -14,6 +14,14 @@ const DAMAGE_RATE = 10; // 1 damage per second
 const INVINCIBLE = 2000;
 const FLASH_SPEED = 250;
 
+// Initialize Obstacle constants
+const COVER_LIGHT = 3;
+const COVER_MID = 5;
+const COVER_HEAVY = 7;
+
+const OBSTACLE_WIDTH = 40;
+const OBSTACLE_HEIGHT = 60;
+
 // Initialize Bullets
 const MAX_BULLETS = 20;
 const BULLET_SIZE = 7;
@@ -51,6 +59,7 @@ var playerAnimation = new Array();
 var crosshair = new Array();
 var bullet = new Array();
 var enemies = new Array(2);
+var obstacles = new Array();
 
 // Game State
 var bossWave = false;
