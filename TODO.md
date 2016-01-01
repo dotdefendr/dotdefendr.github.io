@@ -6,11 +6,12 @@ The following is a list of tasks that have not yet been completed.
 ### Instructions
 
 Pick a task and create a branch for it. Only add commits having to do with that task.
-In your pull request, edit this file to show the ~~crossed out task~~ after completion.
+In your pull request, edit this file to show the ~~crossed out task~~ followed by the
+date and your username.
 
 ## Tasks
 
-- ~~Move tasks into separate file.~~
+- ~~Move tasks into separate file.~~ 12/31 kfarr2
 - Add title to beginning screen.
 - Add player stats to end screen.
 - Add "bounce" effect for enemies that collide with players.
