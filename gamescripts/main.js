@@ -21,10 +21,10 @@
 function loadScripts(){
     $.getScript("gamescripts/keybindings.js");
     $.getScript("gamescripts/helpers.js");
+    $.getScript("gamescripts/obstacles.js");
     $.getScript("gamescripts/crosshair.js");
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/enemy.js");
-    $.getScript("gamescripts/obstacles.js");
     $.getScript("gamescripts/bullets.js");
 }
 loadScripts();
@@ -44,7 +44,7 @@ $(function(){
     var background2 = new $.gQ.Animation({imageURL: "img/backgrounds/bg_concrete.png"});
 
     // Create the obstacles
-    var obstacles[0] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-01.png"});
+    obstacles[0] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-01.png"});
 
     // Player Animations
     playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player/player1.png"});
@@ -121,7 +121,12 @@ $(function(){
     $("#player")[0].player = new Player($("#player"));
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
-    populatePlayground(COVER_LIGHT);
+
+    var cover = COVER_LIGHT;
+    for(i=0; i < cover; i++){
+        var name = "obstacle_" + i;
+        $("#obstacles").addSprite(name, {animation: obstacles[i], width: OBSTACLE_WIDTH, height: OBSTACLE_HEIGHT});
+    }
 
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
