@@ -61,7 +61,7 @@ The following is a list of tasks that have not yet been completed.
 ### Instructions
 
 Pick a task and create a branch for it. Only add commits having to do with that task.
-In your pull request, edit this file to show the crossed out task after completion.
+In your pull request, edit this file to show the ~~crossed out task~~ after completion.
 
 ## Tasks
 
