@@ -24,6 +24,7 @@ function loadScripts(){
     $.getScript("gamescripts/crosshair.js");
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/enemy.js");
+    $.getScript("gamescripts/obstacles.js");
     $.getScript("gamescripts/bullets.js");
 }
 loadScripts();
@@ -39,33 +40,36 @@ $(function(){
     //-------------------------------------- Assign and initialize images ---------------------------------------------//
     //-----------------------------------------------------------------------------------------------------------------//
     // Create the backgrounds
-    var background1 = new $.gQ.Animation({imageURL: "img/bg_concrete.png"});
-    var background2 = new $.gQ.Animation({imageURL: "img/bg_concrete.png"});
+    var background1 = new $.gQ.Animation({imageURL: "img/backgrounds/bg_concrete.png"});
+    var background2 = new $.gQ.Animation({imageURL: "img/backgrounds/bg_concrete.png"});
+
+    // Create the obstacles
+    var obstacles[0] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-01.png"});
 
     // Player Animations
-    playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player1.png"});
-    playerAnimation["dead"] = new $.gQ.Animation({imageURL: "img/player_dead.png"});
-    playerAnimation["invincible"] = new $.gQ.Animation({imageURL: "img/player_invincible.png"});
+    playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player/player1.png"});
+    playerAnimation["dead"] = new $.gQ.Animation({imageURL: "img/player/player_dead.png"});
+    playerAnimation["invincible"] = new $.gQ.Animation({imageURL: "img/player/player_invincible.png"});
 
     // Enemy Animations
     enemies[0] = new Array();
-    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/grunt_enemy.png"});
-    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/grunt_enemy_dead.png"});
+    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy.png"});
+    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy_dead.png"});
 
     enemies[1] = new Array();
-    enemies[1]["idle"] = new $.gQ.Animation({imageURL: "img/purple_enemy.png"});
-    enemies[1]["dead"] = new $.gQ.Animation({imageURL: "img/purple_enemy_dead.png"});
+    enemies[1]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy.png"});
+    enemies[1]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy_dead.png"});
 
     enemies[2] = new Array();
-    enemies[2]["idle"] = new $.gQ.Animation({imageURL: "img/purple_enemy_big.png"});
-    enemies[2]["dead"] = new $.gQ.Animation({imageURL: "img/purple_enemy_big_dead.png"});
+    enemies[2]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy_big.png"});
+    enemies[2]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy_big_dead.png"});
 
     // Bullet Animations
-    bullet["player"] = new $.gQ.Animation({imageURL: "img/bullet.png"});
-    bullet["purple"] = new $.gQ.Animation({imageURL: "img/bullet_powerup_purple.png"});
-    bullet["blue"] = new $.gQ.Animation({imageURL: "img/bullet_powerup_blue.png"});
+    bullet["player"] = new $.gQ.Animation({imageURL: "img/bullets/bullet.png"});
+    bullet["purple"] = new $.gQ.Animation({imageURL: "img/bullets/bullet_powerup_purple.png"});
+    bullet["blue"] = new $.gQ.Animation({imageURL: "img/bullets/bullet_powerup_blue.png"});
 
-    crosshair["aim"] = new $.gQ.Animation({imageURL: "img/crosshair.png"});
+    crosshair["aim"] = new $.gQ.Animation({imageURL: "img/crosshairs/crosshair.png"});
 
     //--------------------------------- Place everything within the playground -------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
@@ -95,6 +99,7 @@ $(function(){
         .addSprite("background1", {animation: background1, width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
         .addSprite("background2", {animation: background2, width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT, posx: PLAYGROUND_WIDTH})
     .end()
+    .addGroup("obstacles", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT}).end()
     .addGroup("playerBulletLayer", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT}).end()
     .addGroup("actors", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT})
         .addGroup("player", {posx: PLAYGROUND_WIDTH/2, posy: PLAYGROUND_HEIGHT/2, width: PLAYER_WIDTH, height: PLAYER_HEIGHT})
@@ -114,6 +119,9 @@ $(function(){
     //      Honestly it seems kinda circular to me but
     //      as long as it works I guess.
     $("#player")[0].player = new Player($("#player"));
+    //--------------------------------------------------------------------------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------------------------//
+    populatePlayground(COVER_LIGHT);
 
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
