@@ -32,6 +32,7 @@ Only add commits having to do with that task.
 - Add player stats to end screen.
 - Add "bounce" effect for enemies that collide with players.
 - Debug end screen.
+- Add an `item` layer. - kfarr2 - 12/31/15
 - Add an `obstactle` layer. - kfarr2 - 12/31/15
 - Add obstacle collision logic for players, bullets and enemies. - kfarr2 - 12/31/15
 - Debug obstacle layer.
