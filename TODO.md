@@ -26,7 +26,9 @@ Only add commits having to do with that task.
 ## Tasks
 
 - ~~Move tasks into separate file.~~ - kfarr2 - 12/31/15 - 12/31/15
+- Change enemy spawn logic to "actor" array method - kfarr2 - 12/31/15
 - Add title to beginning screen.
+- Add 2 timers. Pause Timer & Overall Game Timer
 - Add player stats to end screen.
 - Add "bounce" effect for enemies that collide with players.
 - Debug end screen.
@@ -46,4 +48,4 @@ Only add commits having to do with that task.
 
 - Occasionally enemies will freeze where they spawned. The sprite remains while the object is unresponsive to collisions.
 - Sometimes page will not finish loading and playground will be left-aligned.
-
+- Esc key functionality is broken in Firefox.
