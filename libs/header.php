@@ -13,5 +13,6 @@
     <link rel="stylesheet" href="static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="static/css/main.css" />
     <link rel="stylesheet" href="static/css/game.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
