@@ -103,7 +103,11 @@ function Bullet(node){
 }
 
 function Obstacle(node){
+    this.width;
+    this.height;
     this.posx;
     this.posy;
     this.node = $(node);
+
+
 }
