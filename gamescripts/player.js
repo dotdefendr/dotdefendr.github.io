@@ -25,6 +25,13 @@ function handlePlayerDamage(enemy){
     }
 }
 
+function onCollisionResetPositionTo(posx, posy){
+    if($("#player").collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
+        $("#player").x(posx);
+        $("#player").y(posy);
+    }
+}
+
 function updatePlayerMovement(){
     // Update the player's movement
     if(!playerHit){
@@ -33,37 +40,54 @@ function updatePlayerMovement(){
 
         // a - left
         if(jQuery.gameQuery.keyTracker[65]){
-            var current = $("#player").x();
-            var next = current - speed;
-            if(next > 0){
+            var currentx = $("#player").x();
+            var currenty = $("#player").y();
+            var next = currentx - speed;
+            // Make sure the player is both in bounds, and
+            // hasn't collided with a building
+
+            if(!isOutOfBounds(next, currenty)){
                 $("#player").x(next);
+                onCollisionResetPositionTo(currentx, currenty);
             }
         }
 
         // d - right
         if(jQuery.gameQuery.keyTracker[68]){
-            var current = $("#player").x();
-            var next = current + speed;
-            if(next < $("#playground").width() - PLAYER_WIDTH){
+            var currentx = $("#player").x();
+            var currenty = $("#player").y();
+            var next = currentx + speed;
+            // Make sure the player is both in bounds, and
+            // hasn't collided with a building
+            if(!isOutOfBounds(next + PLAYER_WIDTH, currenty)){
                 $("#player").x(next);
+                onCollisionResetPositionTo(currentx, currenty);
             }
         }
 
         // w - up
         if(jQuery.gameQuery.keyTracker[87]){
-            var current = $("#player").y();
-            var next = current - speed;
-            if(next > 0){
+            var currentx = $("#player").x();
+            var currenty = $("#player").y();
+            var next = currenty - speed;
+            // Make sure the player is both in bounds, and
+            // hasn't collided with a building
+            if(!isOutOfBounds(currentx, next)){
                 $("#player").y(next);
+                onCollisionResetPositionTo(currentx, currenty);
             }
         }
 
         // s - down
         if(jQuery.gameQuery.keyTracker[83]){
-            var current = $("#player").y();
-            var next = current + speed;
-            if(next < $("#playground").height() - PLAYER_HEIGHT){
+            var currentx = $("#player").x();
+            var currenty = $("#player").y();
+            var next = currenty + speed;
+            // Make sure the player is both in bounds, and
+            // hasn't collided with a building
+            if(!isOutOfBounds(currentx, next + PLAYER_HEIGHT)){
                 $("#player").y(next);
+                onCollisionResetPositionTo(currentx, currenty);
             }
         }
     } else {

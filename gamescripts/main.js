@@ -19,16 +19,25 @@
 //
 //-------------------------------------------------------------------------------------------------------------------------------//
 function loadScripts(){
-    $.getScript("gamescripts/keybindings.js");
+    $.getScript("gamescripts/variables.js");
     $.getScript("gamescripts/helpers.js");
-    $.getScript("gamescripts/obstacles.js");
+    $.getScript("gamescripts/keybindings.js");
     $.getScript("gamescripts/crosshair.js");
+    $.getScript("gamescripts/objects.js");
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/enemy.js");
+    $.getScript("gamescripts/obstacles.js");
     $.getScript("gamescripts/bullets.js");
 }
-loadScripts();
 
+function loadEverything(){
+    try{
+        loadScripts();
+    } catch(ReferenceError){
+        setTimeout(function(){ loadEverything(); }, 250);
+    }
+}
+loadEverything();
 //-------------------------------------------------------------------------------------------------------------------------------//
 //
 //
@@ -36,7 +45,6 @@ loadScripts();
 //
 //-------------------------------------------------------------------------------------------------------------------------------//
 $(function(){
-
     //-------------------------------------- Assign and initialize images ---------------------------------------------//
     //-----------------------------------------------------------------------------------------------------------------//
     // Create the backgrounds
@@ -45,6 +53,8 @@ $(function(){
 
     // Create the obstacles
     obstacles[0] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-01.png"});
+    obstacles[1] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-02.png"});
+    obstacles[2] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-03.png"});
 
     // Player Animations
     playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player/player1.png"});
@@ -121,17 +131,21 @@ $(function(){
     $("#player")[0].player = new Player($("#player"));
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
-
-    /*
-    var cover = COVER_LIGHT;
-    for(i=0; i < cover; i++){
-        var name = "obstacle_" + i;
-        $("#obstacles").addSprite(name, {animation: obstacles[i], width: OBSTACLE_WIDTH, height: OBSTACLE_HEIGHT});
+    //
+    //
+    function tryPopulating(){
+        try {
+            populatePlayground(COVER_LIGHT);
+        }
+        catch(ReferenceError){
+            setTimeout(function(){ tryPopulating() }, 250)
+        }
     }
-    */
-
+    tryPopulating();
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
+    //  Add all the bullets
+    //
     for(i=0; i < MAX_BULLETS; i++){
         var name = "playerBullet_" + i;
         $("#playerBulletLayer").addSprite(name, {

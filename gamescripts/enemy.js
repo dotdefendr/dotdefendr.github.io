@@ -18,7 +18,7 @@ function updateEnemyMovement(){
         // handle the players damage
         handlePlayerDamage($(this));
 
-        // Update the movement
+        // No collision so update the movement
         this.enemy.update($("#player"));
     });
 }

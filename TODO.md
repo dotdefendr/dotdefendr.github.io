@@ -33,8 +33,8 @@ Only add commits having to do with that task.
 - Add "bounce" effect for enemies that collide with players.
 - Debug end screen.
 - Add an `item` layer. - kfarr2 - 12/31/15
-- Add an `obstactle` layer. - kfarr2 - 12/31/15
-- Add obstacle collision logic for players, bullets and enemies. - kfarr2 - 12/31/15
+- ~~Add an `obstactle` layer.~~ - kfarr2 - 12/31/15 - 1/1/16
+- ~~Add obstacle collision logic for players, bullets and enemies.~~ - kfarr2 - 12/31/15 - 1/3/16
 - Debug obstacle layer.
 - Add `achievements` layer.
 - Define `achievement` serializable data structure (so achievements can be loaded from a `.json` file).
