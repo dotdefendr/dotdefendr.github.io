@@ -8,6 +8,7 @@
     <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/gamequery-0.7.1.js"></script>
     <script type="text/javascript" src="static/js/analytics.js"></script>
+    <script type="text/javascript" src="static/js/facebook.js"></script>
     <script type="text/javascript" src="gamescripts/variables.js"></script>
     <script type="text/javascript" src="gamescripts/helpers.js"></script>
     <script type="text/javascript" src="gamescripts/obstacles.js"></script>
@@ -19,3 +20,4 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <div id="fb-root"></div>
