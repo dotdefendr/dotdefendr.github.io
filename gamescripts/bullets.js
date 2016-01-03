@@ -12,8 +12,10 @@ function updateBulletMovement(){
         var posx = $(this).x();
         var posy = $(this).y();
 
-        // Check if out of bounds
-        if(posx < 0 || posx > PLAYGROUND_WIDTH || posy > PLAYGROUND_HEIGHT || posy < 0){
+        var collided_with_wall = $(this).collision(".obstacleBody,."+$.gQ.groupCssClass);
+
+        // Check if out of bounds or collided with wall
+        if(isOutOfBounds(posx, posy) || collided_with_wall.length > 0){
             $(this)[0].bullet.fired = false;
             $(this).fadeOut(0,0);
             return;
@@ -33,6 +35,21 @@ function updateBulletMovement(){
         $(this).y(nextY);
 
     });
+}
+
+// lets you know if a coordinate is out of bounds
+function isOutOfBounds(x,y){
+    if(x < 0){
+        return true;
+    } else if(x > PLAYGROUND_WIDTH){
+        return true;
+    } else if(y < 0){
+        return true;
+    } else if(y > PLAYGROUND_HEIGHT){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // This function handles fire logic.

@@ -11,7 +11,7 @@ const COVER_LIGHT = 3;
 const COVER_MID = 5;
 const COVER_HEAVY = 7;
 
-const CELL_SIZE = 50;
+const CELL_SIZE = 25;
 var NUM_X_CELLS = Math.floor(PLAYGROUND_WIDTH/CELL_SIZE);
 var NUM_Y_CELLS = Math.floor(PLAYGROUND_HEIGHT/CELL_SIZE);
 
@@ -84,14 +84,7 @@ function placeInRandomLocation(obstacle_size, obstacle){
 
     obstacle[0].obstacle.xpos = obstacle.x(x);
     obstacle[0].obstacle.ypos = obstacle.y(y);
-    obstacle.addClass("obstacle");
 }
-
-//
-function handleCollision(){
-
-}
-
 
 function occupyArea(startingCellX, startingCellY, endingCellX, endingCellY){
     for(var i = startingCellX; i < endingCellX; i++){
@@ -99,6 +92,13 @@ function occupyArea(startingCellX, startingCellY, endingCellX, endingCellY){
             OBSTACLE_GRID[i][j] = true;
         }
     }
+}
+
+function coordinatesAreOccupied(x,y){
+    var x_cell = Math.floor(x/CELL_SIZE);
+    var y_cell = Math.floor(y/CELL_SIZE);
+    return OBSTACLE_GRID[x_cell][y_cell];
+
 }
 
 function areaIsOccupied(startingCellX, startingCellY, endingCellX, endingCellY){
@@ -122,9 +122,11 @@ function populatePlayground(cover){
             width: OBSTACLE_SIZE[i][0],
             height: OBSTACLE_SIZE[i][1]
         });
+        $("#"+name).addClass("obstacleBody");
         $("#"+name)[0].obstacle = new Obstacle($("#"+name));
 
         // Now figure out where to put it
         placeInRandomLocation(OBSTACLE_SIZE[i], $("#"+name));
     }
+    OBSTACLE_GRID[player_cell[0], player_cell[1]] = false;
 }
