@@ -11,7 +11,7 @@ const COVER_LIGHT = 3;
 const COVER_MID = 5;
 const COVER_HEAVY = 7;
 
-const CELL_SIZE = 25;
+const CELL_SIZE = 20;
 var NUM_X_CELLS = Math.floor(PLAYGROUND_WIDTH/CELL_SIZE);
 var NUM_Y_CELLS = Math.floor(PLAYGROUND_HEIGHT/CELL_SIZE);
 

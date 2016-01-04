@@ -74,16 +74,25 @@ function Enemy(node){
 
     // updates the position of the enemy
     this.update = function(playerNode){
+        // define the variables we need to track
         var posx = this.node.x();
         var posy = this.node.y();
         var enemyPoint = [posx, posy];
         var playerPoint = PLAYER_POSITION;
         var direction = getRadians(playerPoint, enemyPoint);
 
+        // attempt to move
         var nextX = Math.round(Math.cos(direction) * this.speedx + posx);
         var nextY = Math.round(Math.sin(direction) * this.speedy + posy);
         this.node.x(nextX);
         this.node.y(nextY);
+        // check if the new position collides us into anything
+        var collided = this.node.collision(".obstacleBody,."+$.gQ.groupCssClass);
+        if(collided.length > 0){
+            this.node.x(posx);
+            this.node.y(posy);
+
+        }
     };
 }
 
