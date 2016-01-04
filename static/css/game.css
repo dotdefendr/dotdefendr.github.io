@@ -40,3 +40,7 @@
     position: absolute;
     margin: 0 auto;
 }
+
+#title {
+    position: absolute;
+}

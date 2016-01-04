@@ -68,6 +68,10 @@ function leftSpawn(){
         $("#actors").addSprite(name, {animation: enemies[0]["idle"], posx: 0, posy: posy, width: PLAYER_WIDTH, height: PLAYER_HEIGHT});
         $("#"+name).addClass("enemy");
         $("#"+name)[0].enemy = new Enemy($("#"+name));
+        while($("#"+name).collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
+            posy = Math.random()*(PLAYGROUND_HEIGHT - 10) + 5;
+            $("#"+name).y(posy);
+        }
     }
 }
 

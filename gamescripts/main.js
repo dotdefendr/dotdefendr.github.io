@@ -174,6 +174,11 @@ $(function(){
     var pushY = ($('#playground').height()/2) - ($('#startbutton').height()/2);
     $('#startbutton').css('margin', pushY + 'px ' + pushX + 'px');
 
+    pushX = ($('#playground').width()/2) - ($('#title').width()/2);
+    pushY = 20;
+    $('#title').css('left', pushX + 'px');
+    $('#title').css('top', pushY + 'px');
+
 
     // Get the overlay from the file
     // using an ajax call, and append
