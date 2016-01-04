@@ -20,7 +20,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------//
 function loadScripts(){
     $.getScript("gamescripts/keybindings.js");
-    $.getScript("gamescripts/helpers.js");
     $.getScript("gamescripts/crosshair.js");
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/enemy.js");
