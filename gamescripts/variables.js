@@ -24,12 +24,18 @@ var BULLETS = [];           // Array to loop through
 var CURRENT_BULLET = 0;     // Pointer to current bullet
 
 // Initialize player constants
-const NUM_REPLAYS = 3; // number of replays you get
+const NUM_REPLAYS = 1; // number of replays you get
 const PLAYER_HEALTH = 20;
 const PLAYER_SPEED = 5; // Player initial speed
 const PLAYER_WIDTH = 20;
 const PLAYER_HEIGHT = 20;
 var PLAYER_POSITION = []; // list containing [x,y] coordinates
+
+// Player stats
+var ACCURACY = 0;
+var TIME = 0;
+var KILL_COUNT = 0;
+var BULLET_COUNT = 0;
 
 // Stuff involving the crosshair
 const MAX_CROSSHAIR_DISTANCE = 100;
