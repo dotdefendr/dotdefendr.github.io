@@ -68,3 +68,19 @@ function countBulletsForLog(){
 $("#restartbutton").click(function(){
     restartGame();
 });
+
+// lets you know if a coordinate is out of bounds
+function isOutOfBounds(x,y){
+    if(x < 0){
+        return true;
+    } else if(x > PLAYGROUND_WIDTH){
+        return true;
+    } else if(y < 0){
+        return true;
+    } else if(y > PLAYGROUND_HEIGHT){
+        return true;
+    } else {
+        return false;
+    }
+}
+

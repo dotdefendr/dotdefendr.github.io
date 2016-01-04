@@ -37,21 +37,6 @@ function updateBulletMovement(){
     });
 }
 
-// lets you know if a coordinate is out of bounds
-function isOutOfBounds(x,y){
-    if(x < 0){
-        return true;
-    } else if(x > PLAYGROUND_WIDTH){
-        return true;
-    } else if(y < 0){
-        return true;
-    } else if(y > PLAYGROUND_HEIGHT){
-        return true;
-    } else {
-        return false;
-    }
-}
-
 // This function handles fire logic.
 //
 function fire(e){
