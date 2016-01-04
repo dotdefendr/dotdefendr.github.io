@@ -34,8 +34,8 @@ function flashScreen(){
 }
 
 function endGameScreen(){
-    $("#actors,#playerBulletLayer,#overlay").fadeTo(1000,0);
-    $("#background").fadeTo(3000, 0);
+    $("#actors,#playerBulletLayer,#overlay,#obstacles").fadeOut(1000);
+    $("#background").fadeOut(3000);
     gameOver = true;
     var template = "";
     $.ajax({
