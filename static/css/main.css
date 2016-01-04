@@ -1,3 +1,11 @@
 body {
     background-color: #333;
 }
+
+#wrapper {
+    position: relative;
+}
+
+.center {
+    display: table;
+}
