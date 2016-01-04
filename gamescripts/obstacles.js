@@ -87,8 +87,8 @@ function placeInRandomLocation(obstacle_size, obstacle){
 }
 
 function occupyArea(startingCellX, startingCellY, endingCellX, endingCellY){
-    for(var i = startingCellX; i < endingCellX; i++){
-        for(var j = startingCellY; j < endingCellY; j++){
+    for(var i = startingCellX; i <= endingCellX; i++){
+        for(var j = startingCellY; j <= endingCellY; j++){
             OBSTACLE_GRID[i][j] = true;
         }
     }
