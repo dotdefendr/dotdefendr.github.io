@@ -16,6 +16,9 @@ function updateUI(){
     if(!accuracy){
         accuracy = 0;
     }
+    ACCURACY = accuracy;
+    KILL_COUNT = killcount;
+    BULLET_COUNT = bulletCount;
     // Update the health
     $("#health").html("Health: "+$("#player")[0].player.health);
     // Update the stats
@@ -45,6 +48,17 @@ function endGameScreen(){
         success: function(html){
             $("#playground").append(html);
         }
+    }).done(function(){
+        $("#accuracy").text(ACCURACY+"%");
+        $("#bulletCount").text(BULLET_COUNT);
+        $("#killCount").text(KILL_COUNT);
+        // Center the start button
+        var pushX = ($('#playground').width()/2) - ($('#restartbutton').width()/2);
+        $('#restartbutton').css('left', pushX + 'px');
+        $("#restartbutton").click(function(){
+            restartGame();
+        });
+
     });
 }
 
@@ -65,9 +79,6 @@ function countBulletsForLog(){
     console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
 }
 
-$("#restartbutton").click(function(){
-    restartGame();
-});
 
 // lets you know if a coordinate is out of bounds
 function isOutOfBounds(x,y){

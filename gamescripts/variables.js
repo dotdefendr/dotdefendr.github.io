@@ -31,6 +31,12 @@ const PLAYER_WIDTH = 20;
 const PLAYER_HEIGHT = 20;
 var PLAYER_POSITION = []; // list containing [x,y] coordinates
 
+// Player stats
+var ACCURACY = 0;
+var TIME = 0;
+var KILL_COUNT = 0;
+var BULLET_COUNT = 0;
+
 // Stuff involving the crosshair
 const MAX_CROSSHAIR_DISTANCE = 100;
 const CROSSHAIR_WIDTH = 10;
