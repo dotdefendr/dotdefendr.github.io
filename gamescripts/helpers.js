@@ -12,13 +12,22 @@ function restartGame(){
 
 // Function to update the user interface.
 function updateUI(){
+    // Update the accuracy.
     var accuracy = Math.round((killcount/bulletCount)*100);
+    // Handle the accuracy coming back as "undefined" or "infinity"
     if(!accuracy){
         accuracy = 0;
+    } else if(accuracy > 100){
+        accuracy = 100;
     }
+
+    // Update persistant variables
     ACCURACY = accuracy;
     KILL_COUNT = killcount;
     BULLET_COUNT = bulletCount;
+
+    // Update the actual hud
+
     // Update the health
     $("#health").html("Health: "+$("#player")[0].player.health);
     // Update the stats
@@ -28,6 +37,7 @@ function updateUI(){
 
 }
 
+// Flash the screen if the player dies
 function flashScreen(){
     $("#playground").append("<div id='flash'></div>");
     $("#flash").height(PLAYGROUND_HEIGHT);
@@ -36,6 +46,7 @@ function flashScreen(){
     $("#playground").remove("#flash");
 }
 
+// Show this screen if the game is over.
 function endGameScreen(){
     $("#actors,#playerBulletLayer,#overlay,#obstacles").fadeOut(1000);
     $("#background").fadeOut(3000);
@@ -62,23 +73,21 @@ function endGameScreen(){
     });
 }
 
+// take 2 [x,y] coordinates and returns
+// then angle between them in radians.
 function getRadians(point1, point2){
     var dx = point1[0] - point2[0];
     var dy = point1[1] - point2[1];
     return Math.atan2(dy, dx);
 }
 
+// Takes 2 [x,y] coordinates and returns
+// the distance between them.
 function getDistance(point1, point2){
     var dx = point1[0] - point2[0];
     var dy = point1[1] - point2[1];
     return Math.floor(Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2)));
 }
-
-function countBulletsForLog(){
-    console.log(CURRENT_BULLET)
-    console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
-}
-
 
 // lets you know if a coordinate is out of bounds
 function isOutOfBounds(x,y){
@@ -95,3 +104,7 @@ function isOutOfBounds(x,y){
     }
 }
 
+function countBulletsForLog(){
+    console.log(CURRENT_BULLET)
+    console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
+}
