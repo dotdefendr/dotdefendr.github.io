@@ -1,5 +1,10 @@
-//-------------------------------------------------------------------------------------------------------------------------------//
-//------------------------------------------ Game Object Declarations -----------------------------------------------------------//
+//
+//  These are the main object declarations
+//  in the game. These are objects that will
+//  have their own animation defined in main.js.
+//
+//  Most of these objects will be able to move
+//
 
 function Player(node){
 
@@ -86,12 +91,13 @@ function Enemy(node){
         var nextY = Math.round(Math.sin(direction) * this.speedy + posy);
         this.node.x(nextX);
         this.node.y(nextY);
+
         // check if the new position collides us into anything
         var collided = this.node.collision(".obstacleBody,."+$.gQ.groupCssClass);
-        if(collided.length > 0){
+        var collided_with_another_enemy = this.node.collision(".enemy,."+$.gQ.groupCssClass);
+        if(collided.length > 0 || collided_with_another_enemy.length > 0){
             this.node.x(posx);
             this.node.y(posy);
-
         }
     };
 }
@@ -101,8 +107,13 @@ function Bullet(node){
     this.node = $(node);
     this.fired = false;
     this.index;
-    this.birth = Date.now();
 
+    // Birth and age are necessary
+    // to keep track of how long a
+    // bullet has been on the field.
+    // this helps if a bullet suddenly
+    // suddenly glitches out.
+    this.birth = Date.now();
     this.age = function(){
         if(this.birth != 0){
             return Number((new Date).getTime() - this.birth);
@@ -117,6 +128,4 @@ function Obstacle(node){
     this.posx;
     this.posy;
     this.node = $(node);
-
-
 }
