@@ -10,7 +10,6 @@
 const COVER_LIGHT = 3;
 const COVER_MID = 5;
 const COVER_HEAVY = 7;
-
 const CELL_SIZE = 25;
 var NUM_X_CELLS = Math.floor(PLAYGROUND_WIDTH/CELL_SIZE);
 var NUM_Y_CELLS = Math.floor(PLAYGROUND_HEIGHT/CELL_SIZE);
@@ -53,15 +52,9 @@ var OBSTACLE_SIZE = [
     [100, 200]
 ];
 
-
-//=======================================================================
-// Compares the combined surface area
-// of all the buildings to the surface area
-// of the playground
-function percentCoveredByObstacles(){
-
-}
-
+// The obstacle size and element are passed in
+// and and a location is chosen, and checked
+// to determine whether it is occuppied.
 function placeInRandomLocation(obstacle_size, obstacle){
 
     // Translate object width and height into # of cells.
@@ -86,21 +79,27 @@ function placeInRandomLocation(obstacle_size, obstacle){
     obstacle[0].obstacle.ypos = obstacle.y(y);
 }
 
+// A set of cells is defined, and
+// the grid array is travered as each
+// cell is set to true (representing occupied)
 function occupyArea(startingCellX, startingCellY, endingCellX, endingCellY){
+    // Loop through X cells (width)
     for(var i = startingCellX; i <= endingCellX; i++){
+        // Loop through Y cells(height)
         for(var j = startingCellY; j <= endingCellY; j++){
             OBSTACLE_GRID[i][j] = true;
         }
     }
 }
 
+// Converts coordinates to grid spaces and returns their value
 function coordinatesAreOccupied(x,y){
-    var x_cell = Math.floor(x/CELL_SIZE);
-    var y_cell = Math.floor(y/CELL_SIZE);
-    return OBSTACLE_GRID[x_cell][y_cell];
-
+    return OBSTACLE_GRID[Math.floor(x/CELL_SIZE)][Math.floor(y/CELL_SIZE)];
 }
 
+// A set of cells is passed in to define an area.
+// if any one of those cells is occupied it returns
+// true. Otherwise it returns false
 function areaIsOccupied(startingCellX, startingCellY, endingCellX, endingCellY){
     for(var i = startingCellX; i < endingCellX; i++){
         for(var j = startingCellY; j < endingCellY; j++){
@@ -112,7 +111,13 @@ function areaIsOccupied(startingCellX, startingCellY, endingCellX, endingCellY){
     return false;
 }
 
+// This is run when the game is started.
+// It places obstacles on the playground.
 function populatePlayground(cover){
+    // Make sure the obstacle does not
+    // spawn on top of the player.
+    OBSTACLE_GRID[player_cell[0], player_cell[1]] = true;
+
     // Loop through the obstacles we've decided to generate
     for(var i=0; i < cover; i++){
         // Name the obstacle & initialize it
@@ -128,5 +133,7 @@ function populatePlayground(cover){
         // Now figure out where to put it
         placeInRandomLocation(OBSTACLE_SIZE[i], $("#"+name));
     }
+
+    // The player cell is no longer considered occupied.
     OBSTACLE_GRID[player_cell[0], player_cell[1]] = false;
 }
