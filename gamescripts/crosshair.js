@@ -1,5 +1,3 @@
-
-
 function updateCrosshair(e){
     // To figure out the mouse position,
     // we need somewhere to store it,
@@ -52,4 +50,3 @@ function updateCrosshair(e){
     } catch(TypeError){
     }
 }
-

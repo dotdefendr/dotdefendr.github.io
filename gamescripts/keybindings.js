@@ -1,15 +1,19 @@
-//--------------------------------------------------------------------------------------------------------------------//
-//---------------------------------------------- Keybindings ---------------------------------------------------------//
+//
+//  This file contains keybindings OTHER than those
+//  having to do with player movement.
+//
+//
 
+// Handle special keys being pushed
 $(document).keydown(function(e){
-    if(!gameOver){
+    if(gameOver){
         switch(e.keyCode){
             case 13: // enter
                 $("#startbutton").trigger("click");
                 break;
         }
     }
-    if(e.keyCode == 27){ // Escape was pressed
+    if(e.keyCode == 27 || e.which == 27){ // Escape was pressed
         restartGame();
     }
 });
@@ -17,6 +21,7 @@ $(document).keydown(function(e){
 $(document).keyup(function(e){
 });
 
+// Handle crosshair updates
 $(document).mousemove(function(e){
     if(!gameOver){
         e.preventDefault();
@@ -24,14 +29,7 @@ $(document).mousemove(function(e){
     }
 });
 
-$("#hud").click(function(e){
-    e.preventDefault();
-});
-
-$("#stats").click(function(e){
-    e.preventDefault();
-});
-
+// Handle stuff that happens within the playground
 $("#playground").click(function(e){
     mouseDown = true;
     fire(e);
@@ -56,5 +54,13 @@ $("#playground").mouseout(function(e){
     mouseDown = false;
     clearInterval(fire_rate_timeout);
 });
-//--------------------------------------------------------------------------------------------------------------------//
-//--------------------------------------------------------------------------------------------------------------------//
+
+// Make sure things arent accidentally clicked or selected
+$("#hud").click(function(e){
+    e.preventDefault();
+});
+
+$("#stats").click(function(e){
+    e.preventDefault();
+});
+

@@ -1,37 +1,3 @@
-//---------------------------------------------------------------------------------------------------//
-//----------------------------------------- Player helpers ------------------------------------------//
-// Kill the player
-function killPlayer(playerNode){
-    playerNode.children().hide();
-
-    // Add a "dead" animation
-    playerNode.addSprite("invincible", {animation: playerAnimation["invincible"], width: 20, height: 20 });
-    playerHit = true;
-    invincible = true;
-    flashScreen();
-};
-
-function handlePlayerDamage(enemy){
-    // Check if there was a collision with the player
-    var collided_with_player = $(enemy).collision("#playerBody,."+$.gQ.groupCssClass);
-    // if an enemy has collided with the player, inflict damage.
-    // Kill the player if they run out of health.
-    if(collided_with_player.length > 0){
-        collided_with_player.each(function(){
-            if($("#player")[0].player.damage()){
-                killPlayer($("#player"));
-            }
-        });
-    }
-}
-
-function onCollisionResetPositionTo(posx, posy){
-    if($("#player").collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
-        $("#player").x(posx);
-        $("#player").y(posy);
-    }
-}
-
 function updatePlayerMovement(){
     // Update the player's movement
     if(!playerHit){
@@ -43,13 +9,7 @@ function updatePlayerMovement(){
             var currentx = $("#player").x();
             var currenty = $("#player").y();
             var next = currentx - speed;
-            // Make sure the player is both in bounds, and
-            // hasn't collided with a building
-
-            if(!isOutOfBounds(next, currenty)){
-                $("#player").x(next);
-                onCollisionResetPositionTo(currentx, currenty);
-            }
+            directionUpdate(currentx, currenty, next, currenty, 0, 0);
         }
 
         // d - right
@@ -57,12 +17,7 @@ function updatePlayerMovement(){
             var currentx = $("#player").x();
             var currenty = $("#player").y();
             var next = currentx + speed;
-            // Make sure the player is both in bounds, and
-            // hasn't collided with a building
-            if(!isOutOfBounds(next + PLAYER_WIDTH, currenty)){
-                $("#player").x(next);
-                onCollisionResetPositionTo(currentx, currenty);
-            }
+            directionUpdate(currentx, currenty, next, currenty, PLAYER_WIDTH, 0);
         }
 
         // w - up
@@ -70,12 +25,7 @@ function updatePlayerMovement(){
             var currentx = $("#player").x();
             var currenty = $("#player").y();
             var next = currenty - speed;
-            // Make sure the player is both in bounds, and
-            // hasn't collided with a building
-            if(!isOutOfBounds(currentx, next)){
-                $("#player").y(next);
-                onCollisionResetPositionTo(currentx, currenty);
-            }
+            directionUpdate(currentx, currenty, currentx, next, 0, 0);
         }
 
         // s - down
@@ -83,12 +33,7 @@ function updatePlayerMovement(){
             var currentx = $("#player").x();
             var currenty = $("#player").y();
             var next = currenty + speed;
-            // Make sure the player is both in bounds, and
-            // hasn't collided with a building
-            if(!isOutOfBounds(currentx, next + PLAYER_HEIGHT)){
-                $("#player").y(next);
-                onCollisionResetPositionTo(currentx, currenty);
-            }
+            directionUpdate(currentx, currenty, currentx, next, 0, PLAYER_HEIGHT);
         }
     } else {
         if($("#player")[0].player.respawn()){
@@ -100,6 +45,56 @@ function updatePlayerMovement(){
         $("#player").children().show();
         $("#player").x(PLAYGROUND_WIDTH/2);
         $("#player").y(PLAYGROUND_HEIGHT/2);
+    }
+}
 
+// This is how the player handles collisions with
+// obstacles. First it moves to the location, then
+// moves back if a collision was caused.
+function onCollisionResetPositionTo(posx, posy){
+    if($("#player").collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
+        $("#player").x(posx);
+        $("#player").y(posy);
+    }
+}
+
+// Takes the current x and y position,
+// the next x and y position, and the
+// offset of the image (to prevent going
+// out of bounds when moving right, or down).
+function directionUpdate(posx, posy, nextx, nexty, offsetx, offsety){
+    // Make sure the player is both in bounds, and
+    // hasn't collided with a building
+    if(!isOutOfBounds(nextx + offsetx, nexty + offsety)){
+        $("#player").x(nextx);
+        $("#player").y(nexty);
+        onCollisionResetPositionTo(posx, posy);
+    }
+}
+
+// Kill the player
+function killPlayer(playerNode){
+    playerNode.children().hide();
+
+    // Add a "dead" animation
+    playerNode.addSprite("invincible", {animation: playerAnimation["invincible"], width: 20, height: 20 });
+    playerHit = true;
+    invincible = true;
+    flashScreen();
+};
+
+// Enemy inflicts damage on the player
+// by running into them.
+function handlePlayerDamage(enemy){
+    // Check if there was a collision with the player
+    var collided_with_player = $(enemy).collision("#playerBody,."+$.gQ.groupCssClass);
+    // if an enemy has collided with the player, inflict damage.
+    // Kill the player if they run out of health.
+    if(collided_with_player.length > 0){
+        collided_with_player.each(function(){
+            if($("#player")[0].player.damage()){
+                killPlayer($("#player"));
+            }
+        });
     }
 }
