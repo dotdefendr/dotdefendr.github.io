@@ -89,15 +89,47 @@ function Enemy(node){
         // attempt to move
         var nextX = Math.round(Math.cos(direction) * this.speedx + posx);
         var nextY = Math.round(Math.sin(direction) * this.speedy + posy);
+
+        // Define the direction x (left or right)
+        if(nextX < posx){
+            this.x_direction = -1;
+        } else if(nextX > posx) {
+            this.x_direction = 1;
+        } else {
+            this.x_direction = 0;
+        }
+
+        // Define the direction y (up or down)
+        if(nextY < posy){
+            this.y_direction = -1;
+        } else if(nextY > posy){
+            this.y_direction = 1;
+        } else {
+            this.y_direction = 0;
+        }
+
+        // attempt to move
         this.node.x(nextX);
         this.node.y(nextY);
 
         // check if the new position collides us into anything
-        var collided = this.node.collision(".obstacleBody,."+$.gQ.groupCssClass);
-        var collided_with_another_enemy = this.node.collision(".enemy,."+$.gQ.groupCssClass);
-        if(collided.length > 0 || collided_with_another_enemy.length > 0){
+        if(causedCollision(this)){
+            // There was a collision
+            // so try just moving in the y direciton
             this.node.x(posx);
-            this.node.y(posy);
+            this.node.y(posy + (this.y_direction * this.speedy));
+            if(causedCollision(this)){
+                // That didn't work,
+                // so try the x direction
+                this.node.x(posx + (this.x_direction * this.speedx));
+                this.node.y(posy);
+                if(causedCollision(this)){
+                    // That didn't work either. We're stuck.
+                    // Revert the position
+                    this.node.x(posx);
+                    this.node.y(posy);
+                }
+            }
         }
     };
 }

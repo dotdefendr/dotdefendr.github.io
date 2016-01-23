@@ -104,6 +104,15 @@ function isOutOfBounds(x,y){
     }
 }
 
+function causedCollision(playerNode){
+    var collided = playerNode.node.collision(".obstacleBody,."+$.gQ.groupCssClass);
+    var collided_with_another_enemy = playerNode.node.collision(".enemy,."+$.gQ.groupCssClass);
+    if(collided.length > 0 || collided_with_another_enemy.length > 0){
+        return true;
+    }
+    return false;
+}
+
 function countBulletsForLog(){
     console.log(CURRENT_BULLET)
     console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
