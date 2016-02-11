@@ -59,11 +59,6 @@ $("#playground").mouseup(function(e){
     clearInterval(fire_rate_timeout);
 });
 
-$("#playground").mouseout(function(e){
-    mouseDown = false;
-    clearInterval(fire_rate_timeout);
-});
-
 // Make sure things arent accidentally clicked or selected
 $("#hud").click(function(e){
     e.preventDefault();
