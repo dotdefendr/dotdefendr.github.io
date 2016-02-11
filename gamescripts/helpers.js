@@ -65,6 +65,7 @@ function endGameScreen(){
         $("#killCount").text(KILL_COUNT);
         // Center the start button
         var pushX = ($('#playground').width()/2) - ($('#restartbutton').width()/2);
+
         $('#restartbutton').css('left', pushX + 'px');
         $("#restartbutton").click(function(){
             restartGame();
@@ -95,10 +96,15 @@ function pausedScreen(){
             $("#killCount").text(KILL_COUNT);
 
             // Center the start button
-            var pushX = ($('#playground').width()/2) - ($('#resumebutton').width()/2);
+            var pushX = ($('#playground').width()/2) - ($('#resumebutton').width()/2) - ($('#restartbutton').width());
             $('#resumebutton').css('left', pushX + 'px');
             $("#resumebutton").click(function(){
                 resume();
+            });
+
+            $('#restartbutton').css('left', pushX + $('#resumebutton').width() + $('#restartbutton').width()/2 + 'px');
+            $("#restartbutton").click(function(){
+                restartGame();
             });
 
             $("#paused-screen").fadeIn(100);
