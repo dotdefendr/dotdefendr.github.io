@@ -9,6 +9,13 @@
     cursor: none;
 }
 
+#paused-screen {
+    position: absolute;
+    margin: 0 auto;
+    background-color: #111;
+    color: #eee;
+}
+
 #hud {
     padding: 5px;
     font-size: 18px;
