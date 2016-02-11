@@ -73,6 +73,48 @@ function endGameScreen(){
     });
 }
 
+// Show this screen on pause
+function pausedScreen(){
+    if(PAUSED == true){
+        resume();
+    } else {
+        $.playground().pauseGame(function(){});
+        $.ajax({
+            url: "gamescripts/templates/pause.html",
+            type: 'get',
+            async: true,
+            success: function(html){
+                $('#playground').append(html);
+            }
+        }).done(function(){
+            $("#paused-screen").height(PLAYGROUND_HEIGHT);
+            $("#paused-screen").width(PLAYGROUND_WIDTH);
+
+            $("#accuracy").text(ACCURACY+"%");
+            $("#bulletCount").text(BULLET_COUNT);
+            $("#killCount").text(KILL_COUNT);
+
+            // Center the start button
+            var pushX = ($('#playground').width()/2) - ($('#resumebutton').width()/2);
+            $('#resumebutton').css('left', pushX + 'px');
+            $("#resumebutton").click(function(){
+                resume();
+            });
+
+            $("#paused-screen").fadeIn(100);
+            PAUSED = true;
+        });
+    }
+}
+
+function resume(){
+    $.playground().resumeGame(function(){});
+    $("#paused-screen").fadeOut(100);
+    $("#paused-screen").remove();
+    $("#playground").remove("#paused-screen");
+    PAUSED = false;
+}
+
 // take 2 [x,y] coordinates and returns
 // then angle between them in radians.
 function getRadians(point1, point2){
