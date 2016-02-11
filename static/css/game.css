@@ -17,9 +17,11 @@
 }
 
 #hud {
+    background-color: #111;
+    opacity: 0.6;
     padding: 5px;
     font-size: 18px;
-    color: #000;
+    color: #eee;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;

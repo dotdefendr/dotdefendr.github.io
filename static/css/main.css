@@ -5,3 +5,8 @@ body {
 .center {
     display: table;
 }
+
+.wrapper {
+    margin: 0 auto;
+    position: relative;
+}

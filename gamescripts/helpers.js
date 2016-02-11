@@ -91,22 +91,29 @@ function pausedScreen(){
             $("#paused-screen").height(PLAYGROUND_HEIGHT);
             $("#paused-screen").width(PLAYGROUND_WIDTH);
 
+            // Update the stats.
             $("#accuracy").text(ACCURACY+"%");
             $("#bulletCount").text(BULLET_COUNT);
             $("#killCount").text(KILL_COUNT);
 
-            // Center the start button
+            var pushX = ($('#playground').width()/2) - ($("#paused-img").width()/2);
+            $('#paused-img').css('left', pushX + 'px');
+
+
+            // Center the resume button
             var pushX = ($('#playground').width()/2) - 5 - ($('#resumebutton').width()/2) - ($('#restartbutton').width());
             $('#resumebutton').css('left', pushX + 'px');
             $("#resumebutton").click(function(){
                 resume();
             });
 
+            // Center the fucking restart button
             $('#restartbutton').css('left', pushX + $('#resumebutton').width() + 10 + $('#restartbutton').width()/2 + 'px');
             $("#restartbutton").click(function(){
                 restartGame();
             });
 
+            // Fade in
             $("#paused-screen").fadeIn(100);
             PAUSED = true;
         });
