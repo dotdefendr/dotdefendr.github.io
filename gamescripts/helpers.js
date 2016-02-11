@@ -96,13 +96,13 @@ function pausedScreen(){
             $("#killCount").text(KILL_COUNT);
 
             // Center the start button
-            var pushX = ($('#playground').width()/2) - ($('#resumebutton').width()/2) - ($('#restartbutton').width());
+            var pushX = ($('#playground').width()/2) - 5 - ($('#resumebutton').width()/2) - ($('#restartbutton').width());
             $('#resumebutton').css('left', pushX + 'px');
             $("#resumebutton").click(function(){
                 resume();
             });
 
-            $('#restartbutton').css('left', pushX + $('#resumebutton').width() + $('#restartbutton').width()/2 + 'px');
+            $('#restartbutton').css('left', pushX + $('#resumebutton').width() + 10 + $('#restartbutton').width()/2 + 'px');
             $("#restartbutton").click(function(){
                 restartGame();
             });
