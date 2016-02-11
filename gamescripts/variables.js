@@ -46,8 +46,8 @@ var CROSSHAIR_DIRECTION = 0; // in radians
 
 // Initialize enemy constants
 const GRUNT_ENEMY_HEALTH = 1;
-const GRUNT_ENEMY_SPEEDX = 1;
-const GRUNT_ENEMY_SPEEDY = 1;
+const GRUNT_ENEMY_SPEEDX = 2;
+const GRUNT_ENEMY_SPEEDY = 2;
 const MAX_ENEMIES = 20;
 const ENEMY_SPAWN_DELAY = 2000;
 var NUM_ENEMIES = 0;
@@ -71,3 +71,4 @@ var mouseDown = false;
 var fire_rate_timeout;
 var damage_rate_timeout;
 var flash_timeout;
+var PAUSED = false;
