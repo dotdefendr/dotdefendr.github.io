@@ -13,12 +13,13 @@ $(document).keydown(function(e){
                 $("#startbutton").trigger("click");
                 break;
         }
-    }
-    if(e.keyCode == 27 || e.which == 27){ // Escape was pressed
-        restartGame();
-    }
-    if(e.keyCode == 80){
-        pausedScreen();
+    } else {
+        if(e.keyCode == 27 || e.which == 27){ // Escape was pressed
+            restartGame();
+        }
+        if(e.keyCode == 80){
+            pausedScreen();
+        }
     }
 });
 
