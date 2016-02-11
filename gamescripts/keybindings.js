@@ -15,7 +15,11 @@ $(document).keydown(function(e){
         }
     } else {
         if(e.keyCode == 27 || e.which == 27){ // Escape was pressed
-            restartGame();
+            if(PAUSED){
+                resume();
+            } else {
+                restartGame();
+            }
         }
         if(e.keyCode == 80){
             pausedScreen();
