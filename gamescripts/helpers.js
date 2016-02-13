@@ -154,6 +154,59 @@ function getDistance(point1, point2){
     return Math.floor(Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2)));
 }
 
+// LINE EQUATION STUFF
+function getM(point1, point2){
+    return (point2[1]-point1[1])/(point2[0]-point1[0]);
+}
+
+function getB(point, slope){
+    return point[1] - (slope * point[0]);
+}
+
+function linesIntersectAt(m1, b1, m2, b2){
+    if(m1 == m2){
+        return false;
+    } else {
+        var X = (b2 - b1)/(m1 - m2);
+        var Y = (m2*X) + b2;
+        return [X,Y];
+    }
+}
+
+// FUNCTION ASSUMES POINT IS ON LINE.
+// CHECK FOR INTERSECTION FIRST.
+function isPointInSegment(point, start, end){
+    var x = (Math.min(start[0], end[0]) <= point[0]) && (point[0] <= Math.max(start[0], end[0]));
+    var y = (Math.min(start[1], end[1]) <= point[1]) && (point[1] <= Math.max(start[1], end[1]));
+    return (x && y);
+}
+
+// Take a rectangle and return the diagonal
+// lines made that connect opposing points
+// through the center of the rectangle.
+function getDiagonalsFromElement(element){
+    // more variables but easier to code IMO.
+    var p1 = [element.posx, element.posy];
+    var p2 = [(element.posx + element.width), element.posy];
+    var p3 = [element.posx, (element.posy + element.height)];
+    var p4 = [(element.posx + element.width), (element.posy + element.height)];
+    var diag1 = [p1, p4];
+    var diag2 = [p2, p3];
+    return [diag1, diag2];
+}
+
+function getOutlineOfElement(element){
+    var p1 = [element.posx, element.posy];
+    var p2 = [(element.posx + element.width), element.posy];
+    var p3 = [element.posx, (element.posy + element.height)];
+    var p4 = [(element.posx + element.width), (element.posy + element.height)];
+    var l1 = [p1, p2];
+    var l2 = [p1, p3];
+    var l3 = [p4, p3];
+    var l4 = [p4, p2];
+    return [l1, l2, l3, l4];
+}
+
 // lets you know if a coordinate is out of bounds
 function isOutOfBounds(x,y){
     if(x < 0){
