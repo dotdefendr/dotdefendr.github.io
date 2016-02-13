@@ -68,6 +68,10 @@ function Enemy(node){
     this.speedx = GRUNT_ENEMY_SPEEDX;
     this.speedy = GRUNT_ENEMY_SPEEDY;
     this.node = $(node);
+    this.memory = GRUNT_ENEMY_MEMORY;
+    this.view_distance = GRUNT_ENEMY_VIEW_DISTANCE;
+    this.something_in_the_way = false;
+    this.player_last_seen_at = [];
 
     this.damage = function(){
         this.health--;
@@ -79,58 +83,7 @@ function Enemy(node){
 
     // updates the position of the enemy
     this.update = function(playerNode){
-        // define the variables we need to track
-        var posx = this.node.x();
-        var posy = this.node.y();
-        var enemyPoint = [posx, posy];
-        var playerPoint = PLAYER_POSITION;
-        var direction = getRadians(playerPoint, enemyPoint);
-
-        // attempt to move
-        var nextX = Math.cos(direction) * this.speedx + posx;
-        var nextY = Math.sin(direction) * this.speedy + posy;
-
-        // Define the direction x (left or right)
-        if(nextX < posx){
-            this.x_direction = -1;
-        } else if(nextX > posx) {
-            this.x_direction = 1;
-        } else {
-            this.x_direction = 0;
-        }
-
-        // Define the direction y (up or down)
-        if(nextY < posy){
-            this.y_direction = -1;
-        } else if(nextY > posy){
-            this.y_direction = 1;
-        } else {
-            this.y_direction = 0;
-        }
-
-        // attempt to move
-        this.node.x(nextX);
-        this.node.y(nextY);
-
-        // check if the new position collides us into anything
-        if(causedCollision(this)){
-            // There was a collision
-            // so try just moving in the y direciton
-            this.node.x(posx);
-            this.node.y(posy + (this.y_direction * this.speedy));
-            if(causedCollision(this)){
-                // That didn't work,
-                // so try the x direction
-                this.node.x(posx + (this.x_direction * this.speedx));
-                this.node.y(posy);
-                if(causedCollision(this)){
-                    // That didn't work either. We're stuck.
-                    // Revert the position
-                    this.node.x(posx);
-                    this.node.y(posy);
-                }
-            }
-        }
+        smart_movement(this);
     };
 }
 
