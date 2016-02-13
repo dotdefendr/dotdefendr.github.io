@@ -21,6 +21,7 @@ var NUM_Y_CELLS = Math.floor(PLAYGROUND_HEIGHT/CELL_SIZE);
 //  spawning on top of eachother.
 //
 var OBSTACLE_GRID = new Array(NUM_X_CELLS);
+var OBSTACLES;
 
 //  Each cell is initially unoccupied,
 //  (except for the middle-most cell, which
@@ -119,6 +120,7 @@ function populatePlayground(cover){
     // Make sure the obstacle does not
     // spawn on top of the player.
     OBSTACLE_GRID[player_cell[0], player_cell[1]] = true;
+    OBSTACLES = new Array(cover);
 
     // Loop through the obstacles we've decided to generate
     for(var i=0; i < cover; i++){
@@ -131,7 +133,7 @@ function populatePlayground(cover){
         });
         $("#"+name).addClass("obstacleBody");
         $("#"+name)[0].obstacle = new Obstacle($("#"+name));
-
+        OBSTACLES[i] = $("#"+name);
         // Now figure out where to put it
         placeInRandomLocation(OBSTACLE_SIZE[i], $("#"+name));
     }
