@@ -69,6 +69,7 @@ function Enemy(node){
     this.speedy = GRUNT_ENEMY_SPEEDY;
     this.node = $(node);
     this.memory = GRUNT_ENEMY_MEMORY;
+    this.player_seen_at_time;
     this.view_distance = GRUNT_ENEMY_VIEW_DISTANCE;
     this.something_in_the_way = false;
     this.player_last_seen_at = [];
