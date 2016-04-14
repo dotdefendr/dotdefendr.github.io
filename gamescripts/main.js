@@ -19,14 +19,10 @@
 //
 //-------------------------------------------------------------------------------------------------------------------------------//
 function loadScripts(){
-    $.getScript("gamescripts/variables.js");
-    $.getScript("gamescripts/helpers.js");
     $.getScript("gamescripts/keybindings.js");
     $.getScript("gamescripts/crosshair.js");
-    $.getScript("gamescripts/objects.js");
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/enemy.js");
-    $.getScript("gamescripts/obstacles.js");
     $.getScript("gamescripts/bullets.js");
 }
 
