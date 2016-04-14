@@ -56,7 +56,7 @@ var NUM_ENEMIES = 0;
 var playerAnimation = new Array();
 var crosshair = new Array();
 var bullet = new Array();
-var enemies = new Array(2);
+var enemies = new Array(new Array());
 var obstacles = new Array();
 
 // Game State

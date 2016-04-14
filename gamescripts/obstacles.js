@@ -49,9 +49,9 @@ for(i = 0; i < NUM_X_CELLS; i++){
 var OBSTACLE_SIZE = [
     [200, 100],
     [50, 100],
-    [100, 200],
-    [150, 50],
-    [150, 50]
+    [100, 200]//,
+    //[150, 50],
+    //[150, 50]
 ];
 
 // The obstacle size and element are passed in
