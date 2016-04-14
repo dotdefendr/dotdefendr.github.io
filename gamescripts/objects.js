@@ -87,8 +87,8 @@ function Enemy(node){
         var direction = getRadians(playerPoint, enemyPoint);
 
         // attempt to move
-        var nextX = Math.round(Math.cos(direction) * this.speedx + posx);
-        var nextY = Math.round(Math.sin(direction) * this.speedy + posy);
+        var nextX = Math.cos(direction) * this.speedx + posx;
+        var nextY = Math.sin(direction) * this.speedy + posy;
 
         // Define the direction x (left or right)
         if(nextX < posx){
