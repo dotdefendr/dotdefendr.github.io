@@ -23,7 +23,6 @@ function loadScripts(){
     $.getScript("gamescripts/crosshair.js");
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/enemy.js");
-    $.getScript("gamescripts/bullets.js");
 }
 
 function loadEverything(){
@@ -134,14 +133,22 @@ $(function(){
     function tryPopulating(){
         try {
             populatePlayground(COVER_LIGHT);
-            populateBullets();
         }
         catch(ReferenceError){
-            setTimeout(function(){ tryPopulating() }, 250)
+            setTimeout(function(){ console.log('Taking a while to load...'); }, 250)
         }
     }
     tryPopulating();
 
+    function tryPopulatingBullets(){
+        try {
+            populateBullets();
+        }
+        catch(ReferenceError){
+            setTimeout(function(){ populateBullets(); }, 250)
+        }
+    }
+    tryPopulatingBullets();
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
     // Center the game
