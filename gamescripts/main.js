@@ -138,38 +138,20 @@ $(function(){
     function tryPopulating(){
         try {
             populatePlayground(COVER_LIGHT);
+            populateBullets();
         }
         catch(ReferenceError){
             setTimeout(function(){ tryPopulating() }, 250)
         }
     }
     tryPopulating();
-    //--------------------------------------------------------------------------------------------------------------------//
-    //--------------------------------------------------------------------------------------------------------------------//
-    //  Add all the bullets
-    //
-    for(i=0; i < MAX_BULLETS; i++){
-        var name = "playerBullet_" + i;
-        $("#playerBulletLayer").addSprite(name, {
-            animation: bullet["player"],
-            posx: PLAYGROUND_WIDTH/2 + (PLAYER_WIDTH - BULLET_SIZE)/2,
-            posy: PLAYGROUND_HEIGHT/2 + (PLAYER_HEIGHT - BULLET_SIZE)/2,
-            width: BULLET_SIZE,
-            height: BULLET_SIZE
-        });
-        $("#"+name).addClass("playerBullet");
-        $("#"+name)[0].bullet = new Bullet($("#"+name));
-        $("#"+name)[0].index = i;
-        $("#"+name).fadeOut(0,0);
-        BULLETS = BULLETS.concat([$("#"+name)]);
-    }
+
     //--------------------------------------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------------------------------------//
     // Center the game
     var width = $(document).width();
     var padding = (width - $('#playground').width())/2;
     $('#playground').css('margin', '0 ' + padding + 'px');
-
 
     // Center the start button
     var pushX = ($('#playground').width()/2) - ($('#startbutton').width()/2);
@@ -180,7 +162,6 @@ $(function(){
     pushY = 20;
     $('#title').css('left', pushX + 'px');
     $('#title').css('top', pushY + 'px');
-
 
     // Get the overlay from the file
     // using an ajax call, and append
@@ -244,7 +225,7 @@ $(function(){
     // (decided at the beginning of the game by the player).
     $.playground().registerCallback(function(){
         var num_enemies = NUM_ENEMIES;
-        if(!gameOver && num_enemies < MAX_ENEMIES){
+        if(!gameOver && (num_enemies < MAX_ENEMIES)){
             leftSpawn();
             num_enemies++;
         }

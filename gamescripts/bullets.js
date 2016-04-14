@@ -15,7 +15,7 @@ function updateBulletMovement(){
         var collided_with_wall = $(this).collision(".obstacleBody,."+$.gQ.groupCssClass);
 
         // Check if out of bounds or collided with wall
-        if(isOutOfBounds(posx, posy) || collided_with_wall.length > 0){
+        if(isOutOfBounds(posx, posy) || (collided_with_wall.length > 0)){
             $(this)[0].bullet.fired = false;
             $(this).fadeOut(0,0);
             return;
@@ -51,7 +51,6 @@ function fire(e){
         // Increment the bullet count and the current bullet index
         bulletCount = (bulletCount + 1);
         CURRENT_BULLET = Number(CURRENT_BULLET+1) % Number(MAX_BULLETS);
-
         // If a bullet has been out for longer than it should
         // take to cross the screen, reload it. It's buggy.
         var live_bullet = Number(BULLETS[CURRENT_BULLET][0].bullet.age()) < EXPIRATION;
@@ -67,7 +66,25 @@ function fire(e){
             $(fired_bullet).x(playerposx);
             $(fired_bullet).y(playerposy);
             $(fired_bullet)[0].bullet.direction = CROSSHAIR_DIRECTION;
-            $(fired_bullet).fadeIn(0,1);
+            $(fired_bullet).fadeIn(0);
         }
+    }
+}
+
+function populateBullets(){
+    for(i=0; i < MAX_BULLETS; i++){
+        var name = "playerBullet_" + i;
+        $("#playerBulletLayer").addSprite(name, {
+            animation: bullet["player"],
+            posx: PLAYGROUND_WIDTH/2 + (PLAYER_WIDTH - BULLET_SIZE)/2,
+            posy: PLAYGROUND_HEIGHT/2 + (PLAYER_HEIGHT - BULLET_SIZE)/2,
+            width: BULLET_SIZE,
+            height: BULLET_SIZE
+        });
+        $("#"+name).addClass("playerBullet");
+        $("#"+name)[0].bullet = new Bullet($("#"+name));
+        $("#"+name)[0].index = i;
+        //$("#"+name).fadeOut(0,0);
+        BULLETS[i] = $("#"+name);
     }
 }
