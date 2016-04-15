@@ -42,6 +42,7 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
                         // Remove the bullet.
                         BULLETS[$(collider)[0].bullet.index][0].bullet.fired = false;
                         $(collider).fadeOut(0);
+
                         // Remove the enemy.
                         $(this).setAnimation(enemies[0]["dead"], function(node){$(node).remove();});
                         $(this).removeClass(collided_class);

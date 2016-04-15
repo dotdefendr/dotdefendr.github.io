@@ -53,11 +53,13 @@ function move_randomly(enemy){
     var posy = enemy.node.y();
     var enemyPoint = [posx, posy];
 
+    // here we overload the player_last_seen_at variable.
     var direction = (Math.random()*2*Math.PI*100)/100;
+    
 
     // attempt to move
-    var nextX = Math.round(Math.cos(direction) * enemy.speedx + posx);
-    var nextY = Math.round(Math.sin(direction) * enemy.speedy + posy);
+    var nextX = (Math.cos(direction) * enemy.speedx + posx);
+    var nextY = (Math.sin(direction) * enemy.speedy + posy);
     attempt_movement(enemy, posx, posy, nextX, nextY);
 }
 
