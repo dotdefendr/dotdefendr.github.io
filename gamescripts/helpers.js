@@ -29,7 +29,8 @@ function updateUI(){
     // Update the actual hud
 
     // Update the health
-    $("#health").html("Health: "+$("#player")[0].player.health);
+    var health_width = (PLAYGROUND_WIDTH / PLAYER_HEALTH) * $("#player")[0].player.health;
+    $("#health").css({"width": health_width});
     // Update the stats
     $("#stats").html("<div class='text-center'>Kills: "+killcount+" Shots Fired: "+bulletCount+" Accuracy: "+accuracy+"%</div>");
     // Update lives
@@ -63,6 +64,7 @@ function endGameScreen(){
         $("#accuracy").text(ACCURACY+"%");
         $("#bulletCount").text(BULLET_COUNT);
         $("#killCount").text(KILL_COUNT);
+        $("#elapsedTime").text($("#timer").text());
         // Center the start button
         var pushX = ($('#playground').width()/2) - ($('#restartbutton').width()/2);
 
@@ -95,6 +97,7 @@ function pausedScreen(){
             $("#accuracy").text(ACCURACY+"%");
             $("#bulletCount").text(BULLET_COUNT);
             $("#killCount").text(KILL_COUNT);
+            $("#elapsedTime").text($("#timer").text());
 
             var pushX = ($('#playground').width()/2) - ($("#paused-img").width()/2);
             $('#paused-img').css('left', pushX + 'px');
@@ -171,4 +174,18 @@ function causedCollision(playerNode){
 function countBulletsForLog(){
     console.log(CURRENT_BULLET)
     console.log(BULLETS[CURRENT_BULLET][0].bullet.fired);
+}
+
+function timerIncrement(){
+    timer_seconds++;
+    if(timer_seconds >= 60){
+        timer_seconds = 0;
+        timer_minutes++;
+        if(timer_minutes >= 60){
+            timer_minutes = 0;
+            timer_hours++;
+        }
+    }
+    var result = (timer_hours ? (timer_hours > 9 ? timer_hours : "0" + timer_hours) : "00") + ":" + (timer_minutes ? (timer_minutes > 9 ? timer_minutes : "0" + timer_minutes) : "00") + ":" + (timer_seconds > 9 ? timer_seconds : "0" + timer_seconds);
+    $("#timer").html(result);
 }

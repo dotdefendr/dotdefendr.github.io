@@ -16,6 +16,14 @@
     color: #eee;
 }
 
+#health {
+    width: 0px;
+    height: 8px;
+    background-color: #009933;
+    opacity: 0.8;
+    border-right: 2px solid #00ff33;
+}
+
 #hud {
     background-color: #111;
     opacity: 0.6;

@@ -72,3 +72,7 @@ var fire_rate_timeout;
 var damage_rate_timeout;
 var flash_timeout;
 var PAUSED = false;
+
+// Keeping track of play time
+var PLAY_TIME = 0;
+var timer_seconds = 0, timer_minutes = 0, timer_hours = 0;

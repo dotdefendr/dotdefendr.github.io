@@ -179,7 +179,6 @@ $(function(){
         }
     });
 
-
     // Set the ID of the loading bar.
     $.loadCallback(function(percent){
         $("#loadingBar").width(400 * percent + "px");
@@ -192,6 +191,7 @@ $(function(){
     $("#startbutton").click(function(){
         $.playground().startGame(function(){
             $("#welcomeScreen").fadeTo(500,0,function(){$(this).remove();});
+            TIMESTAMP = Date.now();
             gameOver = false;
         });
     });
@@ -234,4 +234,8 @@ $(function(){
         }
         NUM_ENEMIES = num_enemies;
     }, ENEMY_SPAWN_DELAY);
+
+    $.playground().registerCallback(function(){
+        timerIncrement();
+    }, 1000);
 });
