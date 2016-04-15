@@ -43,7 +43,7 @@ $(function(){
     //-------------------------------------- Assign and initialize images ---------------------------------------------//
     //-----------------------------------------------------------------------------------------------------------------//
     // Create the backgrounds
-    var background1 = new $.gQ.Animation({imageURL: "img/backgrounds/bg_concrete.png"});
+    var background1 = new $.gQ.Animation({imageURL: "img/backgrounds/bg_dirt.png"});
     var background2 = new $.gQ.Animation({imageURL: "img/backgrounds/bg_concrete.png"});
 
     // Create the obstacles
@@ -60,8 +60,8 @@ $(function(){
 
     // Enemy Animations
     enemies[0] = new Array();
-    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy.png"});
-    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy_dead.png"});
+    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy_dark.png"});
+    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy_dark_dead.png"});
 
     enemies[1] = new Array();
     enemies[1]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy.png"});
@@ -165,6 +165,7 @@ $(function(){
     pushY = 20;
     $('#title').css('left', pushX + 'px');
     $('#title').css('top', pushY + 'px');
+
 
     // Get the overlay from the file
     // using an ajax call, and append

@@ -47,6 +47,13 @@ function flashScreen(){
     $("#playground").remove("#flash");
 }
 
+function flashEntity(entity){
+    setTimeout(function(){
+        $(entity).css({ 'box-shadow': '0 0 15px rgba(0,28,0, 0.3)', 'border-radius': '2em' });
+    }, 20);
+    $(entity).css({ 'box-shadow': '0 0 0px #fff' });
+}
+
 // Show this screen if the game is over.
 function endGameScreen(){
     $("#actors,#playerBulletLayer,#overlay,#obstacles").fadeOut(1000);

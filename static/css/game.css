@@ -58,6 +58,18 @@
     margin: 0 auto;
 }
 
+#startbutton {
+    background-image: url("../../img/assets/player_invincible_powerup_big.png");
+    background-size: 200px 200px;
+    width: 200px;
+    height: 200px;
+}
+
+#start-image {
+    display: none;
+}
+
+
 #title {
     position: absolute;
 }

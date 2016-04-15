@@ -46,13 +46,21 @@ $("#playground").mousedown(function(e){
     // happens when the user clicks.
     mouseDown = true;
     fire_rate_timeout = setInterval(function(e){
-        fire(e);
+        if(mouseDown){
+            fire(e);
+        }
     }, FIRE_RATE);
 });
 
 $("#playground").mouseup(function(e){
     mouseDown = false;
     clearInterval(fire_rate_timeout);
+});
+
+$("#startbutton").hover(function(){
+    $("#start-image").fadeIn(1000);
+}, function(){
+    $("#start-image").fadeOut(500);
 });
 
 // Make sure things arent accidentally clicked or selected

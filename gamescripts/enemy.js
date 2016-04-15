@@ -38,6 +38,7 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
                         killcount++;
                         NUM_ENEMIES--;
 
+                        flashEntity(this);
                         // Remove the bullet.
                         BULLETS[$(collider)[0].bullet.index][0].bullet.fired = false;
                         $(collider).fadeOut(0);
@@ -65,7 +66,7 @@ function leftSpawn(){
     if(!gameOver && !bossWave){
         var posy = Math.random()*(PLAYGROUND_HEIGHT - 10) + 5;
         var name = "enemy1_"+Math.ceil(Math.random()*1000);
-        $("#actors").addSprite(name, {animation: enemies[0]["idle"], posx: 0, posy: posy, width: PLAYER_WIDTH, height: PLAYER_HEIGHT});
+        $("#actors").addSprite(name, {animation: enemies[0]["idle"], posx: 0, posy: posy, width: GRUNT_ENEMY_SIZE, height: GRUNT_ENEMY_SIZE});
         $("#"+name).addClass("enemy");
         $("#"+name)[0].enemy = new Enemy($("#"+name));
         while($("#"+name).collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
