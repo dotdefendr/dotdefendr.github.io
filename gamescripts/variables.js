@@ -25,7 +25,7 @@ var CURRENT_BULLET = 0;     // Pointer to current bullet
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
-const PLAYER_HEALTH = 20;
+const PLAYER_HEALTH = 100;
 const PLAYER_SPEED = 5; // Player initial speed
 const PLAYER_WIDTH = 20;
 const PLAYER_HEIGHT = 20;
