@@ -36,25 +36,31 @@ $(document).mousemove(function(e){
 
 // Handle stuff that happens within the playground
 $("#playground").click(function(e){
-    mouseDown = true;
-    fire(e);
-    mouseDown = false;
+    if(CAN_FIRE == true){
+        mouseDown = true;
+        fire(e);
+        mouseDown = false;
+    }
 });
 
 $("#playground").mousedown(function(e){
     // This function controls what
     // happens when the user clicks.
-    mouseDown = true;
-    fire_rate_timeout = setInterval(function(e){
-        if(mouseDown){
-            fire(e);
-        }
-    }, FIRE_RATE);
+    if(CAN_FIRE == true){
+        mouseDown = true;
+        fire_rate_timeout = setInterval(function(e){
+            if(mouseDown){
+                fire(e);
+            }
+        }, FIRE_RATE);
+    }
 });
 
 $("#playground").mouseup(function(e){
-    mouseDown = false;
-    clearInterval(fire_rate_timeout);
+    if(CAN_FIRE == true){
+        mouseDown = false;
+        clearInterval(fire_rate_timeout);
+    }
 });
 
 $("#startbutton").hover(function(){
@@ -71,4 +77,3 @@ $("#hud").click(function(e){
 $("#stats").click(function(e){
     e.preventDefault();
 });
-

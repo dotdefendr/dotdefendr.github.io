@@ -196,6 +196,11 @@ $(function(){
             TIMESTAMP = Date.now();
             gameOver = false;
         });
+
+        setTimeout(function(){
+            CAN_FIRE = true;
+            $('.playerBullet').css('visibility', 'visible');
+        }, 1000);
     });
 
     //--------------------------------------------------------------------------------------------------------------------//
