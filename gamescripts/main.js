@@ -157,11 +157,10 @@ $(function(){
     $('#playground').css('margin', '0 ' + padding + 'px');
 
     // Center the start button
-    var pushX = ($('#playground').width()/2) - ($('#startbutton').width()/2);
     var pushY = ($('#playground').height()/2) - ($('#startbutton').height()/2);
-    $('#startbutton').css('margin', pushY + 'px ' + pushX + 'px');
+    $('#startbutton').css('margin-top', pushY + 'px ');
 
-    pushX = ($('#playground').width()/2) - ($('#title').width()/2);
+    var pushX = ($('#playground').width()/2) - ($('#title').width()/2);
     pushY = 20;
     $('#title').css('left', pushX + 'px');
     $('#title').css('top', pushY + 'px');
