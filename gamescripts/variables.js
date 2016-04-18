@@ -25,7 +25,7 @@ var CURRENT_BULLET = 0;     // Pointer to current bullet
 
 // Initialize player constants
 const NUM_REPLAYS = 3; // number of replays you get
-const PLAYER_HEALTH = 20;
+const PLAYER_HEALTH = 100;
 const PLAYER_SPEED = 5; // Player initial speed
 const PLAYER_WIDTH = 20;
 const PLAYER_HEIGHT = 20;
@@ -46,8 +46,8 @@ var CROSSHAIR_DIRECTION = 0; // in radians
 
 // Initialize enemy constants
 const GRUNT_ENEMY_HEALTH = 1;
-const GRUNT_ENEMY_SPEEDX = 2;
-const GRUNT_ENEMY_SPEEDY = 2;
+const GRUNT_ENEMY_SPEEDX = 3;
+const GRUNT_ENEMY_SPEEDY = 3;
 const GRUNT_ENEMY_SIZE = 24;
 const GRUNT_ENEMY_MEMORY = 10000; // 10 seconds
 const GRUNT_ENEMY_VIEW_DISTANCE = 400;
