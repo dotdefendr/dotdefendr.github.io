@@ -1,0 +1,35 @@
+{
+    'grunt': {
+        'max_health': 1,
+        'movement_speed': 3,
+        'size': 24,
+        'view': 400,
+        'memory': 10000,
+        'damage': 1,
+        'sprites': {
+            'alive' : "img/enemies/grunt_enemy_dark.png",
+            'dead'  : "img/enemies/grunt_enemy_dark_dead.png"
+        }
+    },
+    'speedy': {
+        'max_health': 1,
+        'movement_speed': 5,
+        'size': 24,
+        'view': 450,
+        'damage': 1,
+        'sprites': {
+            'alive' : 'img/enemies/purple_enemy.png',
+            'dead'  : 'img/enemies/purple_enemy_dead.png'
+        }
+    },
+    'tank': {
+        'max_health': 3,
+        'movement_speed': 1,
+        'view': 600,
+        'damage': 2,
+        'sprites': {
+            'alive' : 'img/enemies/purple_enemy_big.png',
+            'dead'  : 'img/enemies/purple_enemy_big_dead.png'
+        }
+    }
+}
