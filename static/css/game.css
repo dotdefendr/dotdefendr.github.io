@@ -4,6 +4,7 @@
     position: absolute;
     background-image: url('../../img/overlay/stress-burn.png');
     background-size: 1000px 400px;
+    z-index: 1;
 }
 
 #flash {
