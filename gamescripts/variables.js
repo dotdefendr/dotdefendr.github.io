@@ -55,6 +55,7 @@ const GRUNT_ENEMY_VIEW_DISTANCE = 400;
 const MAX_ENEMIES = 1;
 const ENEMY_SPAWN_DELAY = 2000;
 var NUM_ENEMIES = 0;
+var ENEMY_DATA;
 
 // Animation Holder
 var playerAnimation = new Array();
