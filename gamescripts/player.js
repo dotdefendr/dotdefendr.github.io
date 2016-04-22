@@ -92,6 +92,7 @@ function handlePlayerDamage(enemy){
     // Kill the player if they run out of health.
     if(collided_with_player.length > 0){
         collided_with_player.each(function(){
+            stressPulse();
             if($("#player")[0].player.damage()){
                 killPlayer($("#player"));
             }
