@@ -67,9 +67,19 @@ function leftSpawn(){
     if(!gameOver && !bossWave){
         var posy = Math.random()*(PLAYGROUND_HEIGHT - 10) + 5;
         var name = "enemy1_"+Math.ceil(Math.random()*1000);
-        $("#actors").addSprite(name, {animation: enemies[0]["idle"], posx: 0, posy: posy, width: GRUNT_ENEMY_SIZE, height: GRUNT_ENEMY_SIZE});
+
+        //TODO: Implement some sort of type-defining code
+        // so enemy types are determined before they are added,
+        // and so attributes can be dynamically referenced.
+
+        // but for now...
+        var type = "grunt";
+
+        $("#actors").addSprite(name, {animation: enemies[0]["alive"], posx: 0, posy: posy, width: ENEMY_DATA[type]["size"], height: ENEMY_DATA[type]["size"]});
         $("#"+name).addClass("enemy");
         $("#"+name)[0].enemy = new Enemy($("#"+name));
+        $("#"+name)[0].enemy.type = type;
+
         while($("#"+name).collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
             posy = Math.random()*(PLAYGROUND_HEIGHT - 10) + 5;
             $("#"+name).y(posy);

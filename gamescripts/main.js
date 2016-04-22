@@ -24,7 +24,11 @@ function loadScripts(){
     $.getScript("gamescripts/player.js");
     $.getScript("gamescripts/movements.js");
     $.getScript("gamescripts/enemy.js");
+
 }
+
+ENEMY_DATA = readJSON('data/enemies.json');
+console.log(ENEMY_DATA['grunt']['max_health']);
 
 function loadEverything(){
     try{
@@ -62,8 +66,8 @@ $(function(){
 
     // Enemy Animations
     enemies[0] = new Array();
-    enemies[0]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy_dark.png"});
-    enemies[0]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/grunt_enemy_dark_dead.png"});
+    enemies[0]["alive"] = new $.gQ.Animation({imageURL: ENEMY_DATA["grunt"]["sprites"]["alive"]});
+    enemies[0]["dead"] = new $.gQ.Animation({imageURL: ENEMY_DATA["grunt"]["sprites"]["dead"]});
 
     enemies[1] = new Array();
     enemies[1]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy.png"});

@@ -64,6 +64,7 @@ function Player(node){
 }
 
 function Enemy(node){
+    this.type = "";
     this.health = GRUNT_ENEMY_HEALTH;
     this.speedx = GRUNT_ENEMY_SPEEDX;
     this.speedy = GRUNT_ENEMY_SPEEDY;

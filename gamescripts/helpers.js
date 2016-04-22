@@ -4,6 +4,15 @@
 //  be categorized and moved later.
 //
 
+// Json reading function
+function readJSON(json_url){
+    var result = $.parseJSON($.ajax({
+        url: json_url,
+        async: false, // <--- Google is frowning at you for this. remember that.
+        dataType: 'json'
+    }).responseText);
+    return result;
+}
 
 // Nice reboot function
 function restartGame(){
@@ -52,6 +61,12 @@ function flashEntity(entity){
         $(entity).css({ 'box-shadow': '0 0 15px rgba(0,28,0, 0.3)', 'border-radius': '2em' });
     }, 20);
     $(entity).css({ 'box-shadow': '0 0 0px #fff' });
+}
+
+function stressPulse(){
+    $("#playground").append("<div id='burn'><div id='overlay'></div></div>");
+    $('#burn').fadeIn(100).fadeOut(1000);
+    $("#burn").remove()
 }
 
 // Show this screen if the game is over.
