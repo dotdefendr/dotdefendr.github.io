@@ -65,7 +65,7 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
 // This function spawns enemies from the left side of the screen only
 function leftSpawn(){
     if(!gameOver && !bossWave){
-        var posy = Math.random()*(PLAYGROUND_HEIGHT - 20)+10;
+        var posy = Math.random()*(PLAYGROUND_HEIGHT - 30)+15;
         var name = "enemy1_"+Math.ceil(Math.random()*1000);
 
         //TODO: Implement some sort of type-defining code
@@ -81,12 +81,12 @@ function leftSpawn(){
         $("#"+name)[0].enemy.type = type;
 
         while($("#"+name).collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
-            posy = Math.random()*(PLAYGROUND_HEIGHT - 20) + 10;
+            posy = Math.random()*(PLAYGROUND_HEIGHT - 30) + 15;
             $("#"+name).y(posy);
         }
 
         while($("#"+name).collision(".enemy,."+$.gQ.groupCssClass).length > 0){
-            posy = Math.random()*(PLAYGROUND_HEIGHT - 20) + 10;
+            posy = Math.random()*(PLAYGROUND_HEIGHT - 30) + 15;
             $("#"+name).y(posy);
         }
     }
