@@ -64,14 +64,16 @@ function Player(node){
 }
 
 function Enemy(node, type){
+    this.direction = 0;
+    this.last_direction_change = 0;
     this.type = type;
     this.health = ENEMY_DATA[type]["max_health"];
     this.speedx = ENEMY_DATA[type]["movement_speed"];
     this.speedy = ENEMY_DATA[type]["movement_speed"];
-    this.node = $(node);
     this.memory = ENEMY_DATA[type]["memory"];
-    this.player_seen_at_time;
     this.view_distance = ENEMY_DATA[type]["view"];
+    this.node = $(node);
+    this.player_seen_at_time;
     this.something_in_the_way = false;
     this.player_last_seen_at = [];
 
