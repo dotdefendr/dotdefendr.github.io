@@ -65,7 +65,7 @@ function handleEnemyDamage(collided, collided_class, collider, collider_class){
 // This function spawns enemies from the left side of the screen only
 function leftSpawn(){
     if(!gameOver && !bossWave){
-        var push = 40;
+        var push = 50;
         var pull = push / 2;
         var posy = Math.random()*(PLAYGROUND_HEIGHT - push)+pull;
         var name = "enemy1_"+Math.ceil(Math.random()*1000);
