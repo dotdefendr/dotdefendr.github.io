@@ -45,10 +45,12 @@ var MOUSE_POSITION = [];
 var CROSSHAIR_DIRECTION = 0; // in radians
 
 // Initialize enemy constants
-const MAX_ENEMIES = 1;
+const MAX_ENEMIES = 10;
 const ENEMY_SPAWN_DELAY = 2000;
+const SLOWDOWN = 1.5;
 var NUM_ENEMIES = 0;
 var ENEMY_DATA;
+
 
 // Animation Holder
 var playerAnimation = new Array();
