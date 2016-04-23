@@ -28,7 +28,6 @@ function loadScripts(){
 }
 
 ENEMY_DATA = readJSON('data/enemies.json');
-console.log(ENEMY_DATA['grunt']['max_health']);
 
 function loadEverything(){
     try{
