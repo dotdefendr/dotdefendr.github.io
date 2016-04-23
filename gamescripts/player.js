@@ -40,13 +40,16 @@ function updatePlayerMovement(){
             endGameScreen();
         }
         playerHit = false;
-        invincible = false;
-        $("#player").addSprite("idle", {animation: playerAnimation["idle"], width: 20, height: 20 });
         $("#player").children().show();
         $("#player").x(PLAYGROUND_WIDTH/2);
         $("#player").y(PLAYGROUND_HEIGHT/2);
     }
+    if(timeOfRespawn < Date.now() - INVINCIBLE){
+        invincible = false;
+        $("#playerBody").setAnimation(playerAnimation["idle"]);
+    }
 }
+
 
 // This is how the player handles collisions with
 // obstacles. First it moves to the location, then
@@ -75,12 +78,13 @@ function directionUpdate(posx, posy, nextx, nexty, offsetx, offsety){
 // Kill the player
 function killPlayer(playerNode){
     playerNode.children().hide();
-
     // Add a "dead" animation
-    playerNode.addSprite("invincible", {animation: playerAnimation["invincible"], width: 20, height: 20 });
+    $("#playerBody").setAnimation(playerAnimation["invincible"]);
     playerHit = true;
     invincible = true;
+    timeOfRespawn = Date.now();
     flashScreen();
+    playerNode.children().show();
 };
 
 // Enemy inflicts damage on the player
