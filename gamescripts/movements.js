@@ -53,7 +53,7 @@ function move_randomly(enemy){
     var posx = enemy.node.x();
     var posy = enemy.node.y();
     var enemyPoint = [posx, posy];
-    if(enemy.last_direction_change < Date.now() - 1200){
+    if(enemy.last_direction_change < Date.now() - 800){
         var direction = (Math.random()*2*Math.PI*100)/100;
         enemy.direction = direction;
         enemy.last_direction_change = Date.now();
