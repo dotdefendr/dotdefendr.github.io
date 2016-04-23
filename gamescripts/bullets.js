@@ -85,9 +85,9 @@ function populateBullets(){
     for(i=0; i < MAX_BULLETS; i++){
         var name = "playerBullet_" + i;
         $("#playerBulletLayer").addSprite(name, {
-            animation: bullet["player"],
-            posx: PLAYGROUND_WIDTH/2 + (PLAYER_WIDTH - BULLET_SIZE)/2,
-            posy: PLAYGROUND_HEIGHT/2 + (PLAYER_HEIGHT - BULLET_SIZE)/2,
+            animation: bullet["blue"],
+            posx: PLAYGROUND_WIDTH,
+            posy: PLAYGROUND_HEIGHT,
             width: BULLET_SIZE,
             height: BULLET_SIZE
         });
