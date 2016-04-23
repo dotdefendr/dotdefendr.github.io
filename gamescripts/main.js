@@ -65,17 +65,13 @@ $(function(){
     playerAnimation["invincible"] = new $.gQ.Animation({imageURL: "img/player/player_invincible.png"});
 
     // Enemy Animations
-    enemies[0] = new Array();
-    enemies[0]["alive"] = new $.gQ.Animation({imageURL: ENEMY_DATA["grunt"]["sprites"]["alive"]});
-    enemies[0]["dead"] = new $.gQ.Animation({imageURL: ENEMY_DATA["grunt"]["sprites"]["dead"]});
-
-    enemies[1] = new Array();
-    enemies[1]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy.png"});
-    enemies[1]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy_dead.png"});
-
-    enemies[2] = new Array();
-    enemies[2]["idle"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy_big.png"});
-    enemies[2]["dead"] = new $.gQ.Animation({imageURL: "img/enemies/purple_enemy_big_dead.png"});
+    var i = 0;
+    for(var type in ENEMY_DATA){
+        enemies[i] = new Array();
+        enemies[i]["alive"] = new $.gQ.Animation({imageURL: ENEMY_DATA[type]["sprites"]["alive"]});
+        enemies[i]["dead"] = new $.gQ.Animation({imageURL: ENEMY_DATA[type]["sprites"]["dead"]});
+        i++;
+    }
 
     // Bullet Animations
     bullet["player"] = new $.gQ.Animation({imageURL: "img/bullets/bullet.png"});
