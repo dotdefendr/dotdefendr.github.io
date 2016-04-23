@@ -36,7 +36,6 @@ var ACCURACY = 0;
 var TIME = 0;
 var KILL_COUNT = 0;
 var BULLET_COUNT = 0;
-var CAN_FIRE = false;
 
 // Stuff involving the crosshair
 const MAX_CROSSHAIR_DISTANCE = 100;
@@ -46,8 +45,6 @@ var MOUSE_POSITION = [];
 var CROSSHAIR_DIRECTION = 0; // in radians
 
 // Initialize enemy constants
-const GRUNT_ENEMY_MEMORY = 10000; // 10 seconds
-const GRUNT_ENEMY_VIEW_DISTANCE = 400;
 const MAX_ENEMIES = 1;
 const ENEMY_SPAWN_DELAY = 2000;
 var NUM_ENEMIES = 0;
