@@ -62,10 +62,6 @@
     background-color: #111;
 }
 
-.playerBullet {
-    visibility: hidden;
-}
-
 #welcomeScreen {
     position: absolute;
     margin: 0 auto;
