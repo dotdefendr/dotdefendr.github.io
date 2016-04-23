@@ -46,10 +46,6 @@ var MOUSE_POSITION = [];
 var CROSSHAIR_DIRECTION = 0; // in radians
 
 // Initialize enemy constants
-const GRUNT_ENEMY_HEALTH = 1;
-const GRUNT_ENEMY_SPEEDX = 3;
-const GRUNT_ENEMY_SPEEDY = 3;
-const GRUNT_ENEMY_SIZE = 24;
 const GRUNT_ENEMY_MEMORY = 10000; // 10 seconds
 const GRUNT_ENEMY_VIEW_DISTANCE = 400;
 const MAX_ENEMIES = 1;

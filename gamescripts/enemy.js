@@ -77,7 +77,7 @@ function leftSpawn(){
 
         $("#actors").addSprite(name, {animation: enemies[0]["alive"], posx: 0, posy: posy, width: ENEMY_DATA[type]["size"], height: ENEMY_DATA[type]["size"]});
         $("#"+name).addClass("enemy");
-        $("#"+name)[0].enemy = new Enemy($("#"+name));
+        $("#"+name)[0].enemy = new Enemy($("#"+name), type);
         $("#"+name)[0].enemy.type = type;
 
         while($("#"+name).collision(".obstacleBody,."+$.gQ.groupCssClass).length > 0){
