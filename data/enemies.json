@@ -16,6 +16,7 @@
         "movement_speed": 5,
         "size": 24,
         "view": 450,
+        "memory": 5000,
         "damage": 1,
         "sprites": {
             "alive" : "img/enemies/purple_enemy.png",
@@ -27,6 +28,7 @@
         "movement_speed": 1,
         "size": 25,
         "view": 600,
+        "memory": 7000,
         "damage": 2,
         "sprites": {
             "alive" : "img/enemies/purple_enemy_big.png",
