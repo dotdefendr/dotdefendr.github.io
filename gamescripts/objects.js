@@ -63,15 +63,15 @@ function Player(node){
     return true;
 }
 
-function Enemy(node){
-    this.type = "";
-    this.health = GRUNT_ENEMY_HEALTH;
-    this.speedx = GRUNT_ENEMY_SPEEDX;
-    this.speedy = GRUNT_ENEMY_SPEEDY;
+function Enemy(node, type){
+    this.type = type;
+    this.health = ENEMY_DATA[type]["max_health"];
+    this.speedx = ENEMY_DATA[type]["movement_speed"];
+    this.speedy = ENEMY_DATA[type]["movement_speed"];
     this.node = $(node);
-    this.memory = GRUNT_ENEMY_MEMORY;
+    this.memory = ENEMY_DATA[type]["memory"];
     this.player_seen_at_time;
-    this.view_distance = GRUNT_ENEMY_VIEW_DISTANCE;
+    this.view_distance = ENEMY_DATA[type]["view"];
     this.something_in_the_way = false;
     this.player_last_seen_at = [];
 
