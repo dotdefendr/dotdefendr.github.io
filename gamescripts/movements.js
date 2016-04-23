@@ -31,7 +31,7 @@ function smart_movement(enemy){
 
     if(enemy.something_in_the_way == false){
         // CASE 1: Player is visible
-        if(distance_to_player <= enemy.view_distance){ // <-- GENERATING UNINTENDED BEHAVIOR
+        if(distance_to_player <= enemy.view_distance){
             always_move_towards_player(enemy);
             enemy.player_last_seen_at = PLAYER_POSITION;
             enemy.player_seen_at_time = Date.now();
@@ -41,7 +41,6 @@ function smart_movement(enemy){
     } else {
         // CASE 2: Player has been seen recently
         if(Date.now() - enemy.player_seen_at_time < enemy.memory && enemyPoint != enemy.player_last_seen_at){
-            //TODO: fix this goddamn shit
             move_towards_known_position(enemy, enemy.player_last_seen_at);
         } else {
             move_randomly(enemy);
@@ -50,18 +49,20 @@ function smart_movement(enemy){
 }
 
 function move_randomly(enemy){
-
     // define the variables we need to track
     var posx = enemy.node.x();
     var posy = enemy.node.y();
     var enemyPoint = [posx, posy];
-
-    // here we overload the player_last_seen_at variable.
-    var direction = (Math.random()*2*Math.PI*100)/100;
-
+    if(enemy.last_direction_change < Date.now() - 1200){
+        var direction = (Math.random()*2*Math.PI*100)/100;
+        enemy.direction = direction;
+        enemy.last_direction_change = Date.now();
+    } else {
+        var direction = enemy.direction;
+    }
     // attempt to move
-    var nextX = (Math.cos(direction) * enemy.speedx + posx);
-    var nextY = (Math.sin(direction) * enemy.speedy + posy);
+    var nextX = (Math.cos(direction) * (enemy.speedx/SLOWDOWN) + posx);
+    var nextY = (Math.sin(direction) * (enemy.speedy/SLOWDOWN) + posy);
     attempt_movement(enemy, posx, posy, nextX, nextY);
 }
 
@@ -115,8 +116,10 @@ function attempt_movement(enemy, posx, posy, nextX, nextY){
     enemy.node.x(nextX);
     enemy.node.y(nextY);
 
-    // check if the new position collides us into anything
-    if(causedCollision(enemy)){
+    if(isOutOfBounds(nextX, nextY) || isOutOfBounds(nextX + ENEMY_DATA[enemy.type]["size"], nextY + ENEMY_DATA[enemy.type]["size"])){
+        enemy.node.x(posx);
+        enemy.node.y(posy);
+    } else if(causedCollision(enemy)){
         // There was a collision
         // so try just moving in the y direciton
         enemy.node.x(posx);
