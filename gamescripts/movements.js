@@ -31,14 +31,17 @@ function smart_movement(enemy){
 
     if(enemy.something_in_the_way == false){
         // CASE 1: Player is visible
-        if(distance_to_player <= enemy.view_distance){
+        if(distance_to_player <= enemy.view_distance){ // <-- GENERATING UNINTENDED BEHAVIOR
             always_move_towards_player(enemy);
             enemy.player_last_seen_at = PLAYER_POSITION;
             enemy.player_seen_at_time = Date.now();
+        } else {
+            move_randomly(enemy);
         }
     } else {
         // CASE 2: Player has been seen recently
         if(Date.now() - enemy.player_seen_at_time < enemy.memory && enemyPoint != enemy.player_last_seen_at){
+            //TODO: fix this goddamn shit
             move_towards_known_position(enemy, enemy.player_last_seen_at);
         } else {
             move_randomly(enemy);
@@ -55,7 +58,6 @@ function move_randomly(enemy){
 
     // here we overload the player_last_seen_at variable.
     var direction = (Math.random()*2*Math.PI*100)/100;
-    
 
     // attempt to move
     var nextX = (Math.cos(direction) * enemy.speedx + posx);
@@ -132,5 +134,4 @@ function attempt_movement(enemy, posx, posy, nextX, nextY){
             }
         }
     }
-
 }
