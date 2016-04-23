@@ -6,7 +6,6 @@
 
 // Handle special keys being pushed
 $(document).keydown(function(e){
-
     if(gameOver){
         switch(e.keyCode){
             case 13: // enter
@@ -36,31 +35,25 @@ $(document).mousemove(function(e){
 
 // Handle stuff that happens within the playground
 $("#playground").click(function(e){
-    if(CAN_FIRE == true){
-        mouseDown = true;
-        fire(e);
-        mouseDown = false;
-    }
+    mouseDown = true;
+    fire(e);
+    mouseDown = false;
 });
 
 $("#playground").mousedown(function(e){
     // This function controls what
     // happens when the user clicks.
-    if(CAN_FIRE == true){
-        mouseDown = true;
-        fire_rate_timeout = setInterval(function(e){
-            if(mouseDown){
-                fire(e);
-            }
-        }, FIRE_RATE);
-    }
+    mouseDown = true;
+    fire_rate_timeout = setInterval(function(e){
+        if(mouseDown){
+            fire(e);
+        }
+    }, FIRE_RATE);
 });
 
 $("#playground").mouseup(function(e){
-    if(CAN_FIRE == true){
-        mouseDown = false;
-        clearInterval(fire_rate_timeout);
-    }
+    mouseDown = false;
+    clearInterval(fire_rate_timeout);
 });
 
 $("#startbutton").hover(function(){
