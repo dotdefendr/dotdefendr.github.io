@@ -55,8 +55,6 @@ $(function(){
     obstacles[0] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-01.png"});
     obstacles[1] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-02.png"});
     obstacles[2] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-building-03.png"});
-    //obstacles[3] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-container-01.png"});
-    //obstacles[4] = new $.gQ.Animation({imageURL: "img/obstacles/obstacle-container-02.png"});
 
     // Player Animations
     playerAnimation["idle"] = new $.gQ.Animation({imageURL: "img/player/player1.png"});
