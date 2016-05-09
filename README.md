@@ -11,7 +11,7 @@ Controls are
         Click to single fire.
         Click & hold for sustained fire.
     Esc:
-        Restart the game.
+        Pause/Unpause the game.
 
 ## Requirements
 
