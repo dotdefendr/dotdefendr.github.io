@@ -17,12 +17,12 @@ Controls are
 
 All dependencies come packaged with the game,
 which means you don't have to install anything (yay!).
-
-However, there are a few requirements
+However, there are a few system requirements
 
 - Apache web server installed & running
-- PHP installed & running
 - Javascript is enabled in your browser.
+
+Note: It's easiest to develop for this from a Linux based server environment.
 
 ## Setup
 
@@ -48,10 +48,10 @@ when you connect to your [VM's] ip address.
 
 ## Pitfalls
 
-Here are some errors I've run into and how I've gotten around them.
+Here are some pitfalls I've run into and how I've gotten around them.
 
-- `service httpd restart` says something about `mod_WSGI`.
-    Open the file it specifies and delete the line referencing mod_WSG; It's not important for this project. Yet.
+- Files aren't loading despite being loaded in the `loadScripts()` function.
+    - Remove the file from the `loadScripts()` function and add it to the header tag in the gameframe.html file.
 
 # TODO
 
