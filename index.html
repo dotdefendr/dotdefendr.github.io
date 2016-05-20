@@ -17,16 +17,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- First Ad Unit -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4932881521542565"
-         data-ad-slot="2715991138"
-         data-ad-format="auto"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
     <div id="fb-root"></div>
     <nav class="navbar navbar-inverse">
         <div class="container">
@@ -43,5 +33,20 @@
     <div class="text-center">
         <div class="text-muted">Copyright 2016</div>
     </div>
+    <div id="ad">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- bottom ad -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px;"
+             data-ad-client="ca-pub-4932881521542565"
+             data-ad-slot="5111054330"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <script>
+        var adpush = ($(window).width() - 728)/2;
+        $('#ad').css('padding-left', adpush);
+    </script>
 </body>
 </html>
