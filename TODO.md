@@ -27,15 +27,7 @@ Only add commits having to do with that task.
 
 - ~~Move tasks into separate file.~~ - kfarr2 - 12/31/15 - 12/31/15
 - Change enemy spawn logic to "actor" array method - kfarr2 - 12/31/15
-- Add title to beginning screen.
-- Add 2 timers. Pause Timer & Overall Game Timer
-- Add player stats to end screen.
 - Add "bounce" effect for enemies that collide with players.
-- ~~Debug end screen.~~ - kfarr2 - 1/3/16 - 1/3/16
-- Add an `item` layer. - kfarr2 - 12/31/15
-- ~~Add an `obstactle` layer.~~ - kfarr2 - 12/31/15 - 1/1/16
-- ~~Add obstacle collision logic for players, bullets and enemies.~~ - kfarr2 - 12/31/15 - 1/3/16
-- Debug obstacle layer. - kfarr2 - 1/3/16
 - Add `achievements` layer.
 - Define `achievement` serializable data structure (so achievements can be loaded from a `.json` file).
 
