@@ -9,5 +9,6 @@
 
     <Directory /path/to/dot-defendr>
         AllowOverride All
+        Require all granted
     </Directory>
 </VirtualHost>
